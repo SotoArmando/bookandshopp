@@ -1,24 +1,23 @@
 import { rapidapi } from "./env";
 const Serverdomain = "https://bookandshoprails.herokuapp.com/";
-const Serverrapidapi = "https://motorcycle-specs-database.p.rapidapi.com";
 
-const Rapidapiurls = {
-    "Get all Models by Make ID and Year": (makeid,year) => `https://motorcycle-specs-database.p.rapidapi.com/model/make-id/${makeid}/${year}`,
-    "Get Article image as media content": (articleid) =>`https://motorcycle-specs-database.p.rapidapi.com/article/${articleid}/image/media`
-}
 
 const Serverdomainurls = {
+    "Return all items in db": `${Serverdomain}items`,
+    "Return all users in db": `${Serverdomain}users`,
+    "Return item picture using id":(id) => `${Serverdomain}res/${id}.jpeg`
 }
 
 const dbkeys = {
     "domain": Serverdomain,
-    "domainthemealdb": Serverrapidapi,
-    ...Rapidapiurls,
     ...Serverdomainurls,
 }
 
 
 const Defaultstate = {
+    Pagehomepath: {
+        previewid: 0,
+    },
     appstate: {
         bookcart: [],
         shopcart: []
@@ -39,7 +38,7 @@ const Defaultstate = {
 
 const detectItems = (item) => {
     let ans;
-    const { listfields } = mealdbkeys
+    const { listfields } = dbkeys
 
     Object.keys(listfields).forEach(e => {
         ans = listfields[e].every(ee => item.hasOwnProperty(ee)) ? e : ans;
@@ -79,6 +78,7 @@ function fetcher(url, call) {
             let cond_0 = url.hasOwnProperty(0)
             if (cond_0) {
                 Promise.all(url.map(e => fetch(e, options).then(resp => {
+                    debugger;
                     console.log(resp); return resp.json()
                 }))).then(call)
             }

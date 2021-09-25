@@ -2,7 +2,7 @@
 import { combineReducers } from 'redux';
 import { createDefaultreducer } from './createDefaultreducer';
 
-let resources = [{}, "session", "appstate", "system"]
+let resources = [{}, "Pagehomepath", "appstate", "session"]
 const reducers = resources.reduce((total, e) => ({ ...(total || {}), [e]: createDefaultreducer(e) }));
 const rootReducer = combineReducers(reducers);
 

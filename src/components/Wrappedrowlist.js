@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Wrappedrowlist({
+export default function Wrappedrowlist({
   item: Item,
   list,
   handleClick = () => 0,
@@ -55,7 +55,7 @@ Wrappedrowlist.propTypes = {
 };
 
 Wrappedrowlist.defaultProps = {
-  handleClick: () => 0,
+  handleClick: () => 0, 
   basis: 43,
   marginh: 12,
   marginv: 12,
@@ -67,4 +67,4 @@ Wrappedrowlist.defaultProps = {
   g: '',
 };
 
-export default Wrappedrowlist;
+

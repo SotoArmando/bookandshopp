@@ -20,7 +20,9 @@
 }
 
 @mixin app($bodywidth, $proportion) {
-  
+  .hide {
+    display: none;
+  }
   .nav_body {
     width: $bodywidth !important;
   }
@@ -593,10 +595,14 @@
   .nav_col_0 {
     position: fixed;
     height: 100vh;
-    left: -100%;
+    left: 0;
+    transform: translateX(-20.07422rem + (1rem *core(27+ 7)));
     top: 0;
+    transition: transform 300ms;
+    will-change: transform;
     &.active {
       left: 0;
+      transform: translateX(0);
     }
   }
   
@@ -721,7 +727,16 @@
     }
   }
 
-  $back-colors: ("na", #000),("0", #f9f9f9), ("whiter15", rgba(255, 255, 255, .84)),("black_o4",#333333),("black_o5",#e6d3d3),
+  $back-colors: 
+    ("granny-smith-apple",#bbdb9bff),
+    ("raisin-black",#202030ff),
+    ("tart-orange",#fb4d3dff),
+    ("pictorial-carmine",#ca1551ff),
+    ("rhythm",#7e7f9aff),
+    ("na", #000),
+    ("0", #f9f9f9),
+    ("whiter15", rgba(255, 255, 255, .84)),
+    ("black_o4",#333333),("black_o5",#e6d3d3),
     ("1", #008000), ("2", #ffffff), ("black_o1", #0a0a0a), ("black_o2", #14150f),("black_o3",#B8B7B7),
     ("white_o1", #f5f5f5), ("nav_o1", #fffff5),("nice_white_o0", (radial-gradient(rgb(255,255,220),white),linear-gradient(white,white))),("wrapperback_0",linear-gradient(45deg, rgb(253,255,253), rgb(255,253,255)) ), 
     (
@@ -850,6 +865,9 @@
   }
   .nopointerevents {
     pointer-events: none;
+  }
+  .allpointerevents {
+    pointer-events: all;
   }
   .norepeat {
     background-repeat: no-repeat;
@@ -1126,6 +1144,36 @@
   .btn_u:hover {
     cursor: pointer !important;
     text-decoration: underline !important;
+  }
+  input:checked+.btn_u {
+    background-color: #85BE4Bff;
+    color: white;
+  }
+  input.cart+label+div {
+    opacity: 0;
+    position: absolute;
+    
+  }
+  input.cart:checked+label+div {
+    opacity: 1;
+    
+  }
+  input.cart0+div {
+    opacity: 0;
+    display: none;
+  }
+  input.cart0:checked {
+    background-color: #85BE4Bff;
+    color: white;
+  }
+  .active_0 {
+    background-color: #85BE4Bff;
+    color: white;
+  }
+  input.cart0:checked+div {
+    display: block;
+    opacity: 1;
+    
   }
   .bodyheight_minusbottom {
     bottom: 3.6rem * core(5 + 23);
