@@ -6,13 +6,14 @@ import Rowmenu from './containers/Rowmenu';
 import Pagehomepath from './containers/Pagehomepath';
 import { useEffect, useState } from 'react';
 import { dbkeys, fetcher } from './fetch';
+import Pagesignsession from './containers/Pagesignsession';
 
 function App() {
-
   let paths = {
-    "/": Pagehomepath,
     "/shop": Pagehomepath,
     "/book": Pagehomepath,
+    "/sign": Pagesignsession,
+    "/": Pagehomepath,
   };
 
   let [appstate,setAppstate] = useState({
@@ -22,12 +23,21 @@ function App() {
     init: true
   });
 
+  function upstreamUser(id,payload) {
+    debugger
+    delete payload.id
+    if (id) {
+      const {users_crud:url0} =  dbkeys;
+      fetcher(url0+`/${id}?`+new URLSearchParams({user:JSON.stringify(payload)}).toString()).fetchcrudOperation("PATCH")
+    }
+  }
+
   useEffect(() => {
     const {init,makeid,year} = appstate;
     const {"Return all items in db": url0}= dbkeys;
     if (init) {
       fetcher([url0],(response)=> { 
-        debugger
+        
         setAppstate({...setAppstate,data:response[0]})
       }).fetchandwaitAll()
       setAppstate({...appstate,init:false})
@@ -36,13 +46,13 @@ function App() {
 
   return (
     <div className="App col items_center">
-      <Rowmenu/>
+      <Rowmenu upstreamUser={upstreamUser}/>
       <div className="maxedcorebox_x23">
       <div className="corebox_0"/>
       <Switch>
         {Object.entries(paths).map(({ 0: route, 1: View }) => (
           <Route path={route}>
-            <View appstate={appstate} />
+            <View appstate={appstate} upstreamUser={upstreamUser} />
           </Route>
         ))}
         <Redirect to="/" />

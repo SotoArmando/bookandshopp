@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { settingskeys } from "../formsetup";
+import { settingskeys } from "../res/formsetup";
 
 export default function Forminputcomponent(
   settings,

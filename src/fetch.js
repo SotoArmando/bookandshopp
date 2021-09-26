@@ -1,11 +1,14 @@
 import { rapidapi } from "./env";
-const Serverdomain = "https://bookandshoprails.herokuapp.com/";
-
+const Serverdomain = "http://127.0.0.1:3000/";
+// const Serverdomain = "https://bookandshoprails.herokuapp.com/";
 
 const Serverdomainurls = {
     "Return all items in db": `${Serverdomain}items`,
     "Return all users in db": `${Serverdomain}users`,
-    "Return item picture using id":(id) => `${Serverdomain}res/${id}.jpeg`
+    "Return item picture using id":(id) => `${Serverdomain}res/${id}.jpeg`,
+    "users_crud":`${Serverdomain}users`,
+    "items_crud":`${Serverdomain}items`,
+    "sessions_crud":`${Serverdomain}sessions`,
 }
 
 const dbkeys = {
@@ -25,27 +28,35 @@ const Defaultstate = {
     session: {
         active: false,
         activesession: {
-            id: false,
-            valid: false,
-            nick: undefined,
-            mail: undefined,
-            password: undefined,
+            id:undefined,
+            user: undefined,
             bookcart: [],
             shopcart: []
         }
     },
+    system: { isfocusinput: false }
+}
+function buildFormData(formData, data, parentKey) {
+    if (data && typeof data === 'object' && !(data instanceof Date) && !(data instanceof File)) {
+      Object.keys(data).forEach(key => {
+        buildFormData(formData, data[key], parentKey ? `${parentKey}[${key}]` : key);
+      });
+    } else {
+      const value = data == null ? '' : data;
+  
+      formData.append(parentKey, value);
+    }
+  }
+  
+function jsonToFormData(data) {
+const formData = new FormData();
+
+buildFormData(formData, data);
+
+return formData;
 }
 
-const detectItems = (item) => {
-    let ans;
-    const { listfields } = dbkeys
 
-    Object.keys(listfields).forEach(e => {
-        ans = listfields[e].every(ee => item.hasOwnProperty(ee)) ? e : ans;
-    })
-
-    return ans;
-}
 
 function fetcher(url, call) {
     const options = {
@@ -78,7 +89,7 @@ function fetcher(url, call) {
             let cond_0 = url.hasOwnProperty(0)
             if (cond_0) {
                 Promise.all(url.map(e => fetch(e, options).then(resp => {
-                    debugger;
+                    
                     console.log(resp); return resp.json()
                 }))).then(call)
             }
@@ -91,10 +102,9 @@ function fetcher(url, call) {
                 ...options,
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
                 },
                 method: operation,
-                body: operation === 'GET' ? undefined : JSON.stringify(body)
+                body: operation === 'GET' ? undefined : jsonToFormData(body)
             }).then(resp => {
                 
                 return resp.json()
@@ -105,4 +115,4 @@ function fetcher(url, call) {
     return d;
 }
 
-export { dbkeys, fetcher, detectItems, Defaultstate }
+export { dbkeys, fetcher, Defaultstate }

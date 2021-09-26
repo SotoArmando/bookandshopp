@@ -2,24 +2,49 @@ import { connect } from 'react-redux';
 import { createMapDispatchtoProps } from '../reducers/createDefaultreducer';
 import Cellcart from "./Cellcart"
 import Colummenu from "../components/Columnmenu"
+import { useHistory } from 'react-router';
 
-function Rowmenu({ bookcart,shopcart,u_appstate }) {
-    debugger;
+function Rowmenu({ bookcart,shopcart,u_appstate,u_session,activesession,active,upstreamUser }) {
+
+    let history = useHistory();
+    
     function handleCartClick(operation,id) {
-        debugger;
+        
         switch(operation) {
             case "Remove from shopcart":
-                u_appstate("shopcart",shopcart.filter(({id:e_id}) => e_id !== id))
+                u_appstate("shopcart",shopcart.filter((e) => e !== id))
+                upstreamUser(activesession.id, {shopcart: shopcart.filter((e) => e !== id)})
                 break;
             case "Remove from bookcart":
-                u_appstate("bookcart",bookcart.filter(({id:e_id}) => e_id !== id))
+                u_appstate("bookcart",bookcart.filter((e) => e !== id))
+                upstreamUser(activesession.id, {bookcart: bookcart.filter((e) => e !== id)})
                 break;
         }
     }
 
+    function handleRowmenuClick(k) {
+        
+        switch(k){
+            case "Sign out":
+                u_appstate("bookcart",[])
+                u_appstate("shopcart",[])
+                u_session("active", false)
+                u_session("activesession",{
+                    id: 0,
+                    user: undefined,
+                    bookcart: [],
+                    shopcart: []
+                })
+                break;
+            default:
+                history.push(k);
+                break;
+        }
+    }
+ 
     const paths = Object.entries({
-        "home": "",
-        "sign": "",
+        "Home": "/",
+        [`${active ? "Sign out": "Sign"}`]: "/sign",
     })
 
     return [
@@ -31,20 +56,16 @@ function Rowmenu({ bookcart,shopcart,u_appstate }) {
         <div className="row">
             <Cellcart handleClick={handleCartClick} bookcart={bookcart} shopcart={shopcart} />
             {
-                paths.map(([k]) => [
+                paths.map(([k,v]) => [
                 <input type="radio" id={k} name="Rowmenupaths" value={k}  className="hide"/>,
-                <label for={k} className="corebox_2 row items_center corebox_x5 center f_1 btn_u">{k}</label>])
+                <label for={k} className="corebox_2 row items_center corebox_x5 center f_1 btn_u" onClick={() => handleRowmenuClick(k)}>{k}</label>])
             }
         </div>
     </div>
     ]
 }
 
-const mapStatetoProps = (state) => {
-    const {bookcart,shopcart} = state.appstate;
-    console.log(state)
-    return ({ bookcart,shopcart })
-};
+const mapStatetoProps = ({ appstate: { bookcart,shopcart },session:{activesession,active} }) => ({ bookcart,shopcart,activesession,active });
 const mapDispatchtoProps = createMapDispatchtoProps();
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(Rowmenu);

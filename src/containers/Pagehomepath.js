@@ -3,24 +3,28 @@ import { createMapDispatchtoProps } from '../reducers/createDefaultreducer';
 import Cellitemdisplay from '../components/Cellitemdisplay'
 import Wrappedrowlist from '../components/Wrappedrowlist'
 
-function Pagehomepath({appstate: { data }, u_appstate,u_Pagehomepath,bookcart,shopcart}) {
-    debugger;
+function Pagehomepath({appstate: { data }, u_appstate,u_Pagehomepath,bookcart,shopcart,upstreamUser,activesession}) {
+    
     function handleItemsClick(operation, {
         make,
         model,
         year,
         id,
         pictureid}) {
-        debugger;
+        
+        const {id:sessionid} = activesession
         switch(operation) {
             case "Preview":
                 u_Pagehomepath("previewid", id)
                 break;
             case "Add to Cart":
-                u_appstate("bookcart", [...bookcart,{make,model,year,id,pictureid}])
+                console.log(id)
+                u_appstate("shopcart", [...shopcart,id])
+                upstreamUser(sessionid,{...activesession,bookcart,shopcart:[...shopcart,id]})
                 break;
             case "Add to Booking":
-                u_appstate("shopcart", [...shopcart,{make,model,year,id,pictureid}])
+                u_appstate("bookcart", [...bookcart,id])
+                upstreamUser(sessionid,{...activesession,shopcart,bookcart:[...bookcart,id]})
                 break;
         }
     }
@@ -35,7 +39,7 @@ function Pagehomepath({appstate: { data }, u_appstate,u_Pagehomepath,bookcart,sh
     </div>
 }
 
-const mapStatetoProps = ({ appstate: { bookcart, shopcart } }) => ({ bookcart,shopcart });
+const mapStatetoProps = ({ appstate: { bookcart, shopcart },session:{activesession} }) => ({ bookcart,shopcart,activesession });
 const mapDispatchtoProps = createMapDispatchtoProps();
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(Pagehomepath);

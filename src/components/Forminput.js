@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { settingskeys, surroundedbrackets } from "../formsetup";
+import { settingskeys, surroundedbrackets } from "../res/formsetup";
 import { createMapDispatchtoProps } from "../reducers/createDefaultreducer";
 import Forminputcomponent from "./Forminputcomponent";
 
@@ -100,13 +100,13 @@ function Forminput({
     e.preventDefault();
 
     if (isValid()) {
-      setStatus("state is valid " + JSON.stringify(state));
+      setStatus("Succesfully completed and submited");
 
       delete state.confirmpassword;
 
       handleCapture(state);
     } else {
-      setStatus("state is not valid " + JSON.stringify(state));
+      setStatus("State is not valid please retry");
     }
   };
 

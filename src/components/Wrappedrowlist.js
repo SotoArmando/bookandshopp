@@ -13,6 +13,9 @@ export default function Wrappedrowlist({
   marginvoff,
   g,
 }) {
+
+  const isArrayofObjects = list.every(e => typeof e === "object");
+  
   return (
     <div data-testid={testid} className="wrappedrowcontainer">
       <div
@@ -33,6 +36,7 @@ export default function Wrappedrowlist({
             // In order to spread dynamicly objects it is needed to
             // use spread operator over key-value objects.
             // eslint-disable-next-line react/jsx-props-no-spreading
+            id={isArrayofObjects ? undefined : e}
             {...e}
           />
         ))}
@@ -43,7 +47,7 @@ export default function Wrappedrowlist({
 
 Wrappedrowlist.propTypes = {
   item: PropTypes.func,
-  list: PropTypes.arrayOf(PropTypes.object),
+  list: PropTypes.arrayOf(PropTypes.any),
   handleClick: PropTypes.func,
   basis: PropTypes.number,
   marginh: PropTypes.number,

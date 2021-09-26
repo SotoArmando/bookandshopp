@@ -3,27 +3,30 @@ import { useLocation } from "react-router";
 import { dbkeys, fetcher } from "../fetch";
 
 export default function Rowitemcartdisplay({
-    duration,
-    make,
-    model,
-    year,
     id,
-    pictureid,
     handleClick,
-    created_at,
     marginh,
     marginv}) {
 
-    const{ "Return item picture using id": url0 } = dbkeys
+    const{ "Return item picture using id": url0, items_crud: url1} = dbkeys
+    let [state, setState] = useState({model:0,year:0,pictureid:0});
 
+    let {model,
+        year,
+        pictureid} = state;
+    
     const [mode,setMode] = useState(0);
         
     let location = useLocation();
-    useEffect(() => {
-        setMode(["/","/book","/shop"].indexOf(window.location.pathname))
-    }, [location]);
+    if (year === 0) {
+        
+        fetcher(url1+`/${id}`,(c)=> {
+            
+            setState(c)
+    }).fetch() }
 
-    debugger
+
+    
     return <div className={`row back_3 borderradius_14  mar_l${marginh} mar_r${marginh} mar_t${marginv} mar_b${marginv} half_horizontalmar half_verticalmar`}>
         <div className="corebox_4 corebox_x4  cover" style={{
             backgroundImage:`url(${url0(pictureid)})`

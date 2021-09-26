@@ -23,13 +23,14 @@ function Cellcart({handleClick,bookcart,shopcart}) {
                 <label for="Shopping" className={`btn_u pad_l22 center corebox_3 ${activetab === 0 ? 'active_0' : ''}`} onClickCapture={() => {setActivetab(0)}} >Shopping</label>
                 <label for="Book" className={`btn_u pad_l22 center corebox_3 ${activetab === 1 ? 'active_0' : ''}`} onClickCapture={() => {setActivetab(1)}} >Book</label>
             </div>
-            <input type="radio" id="Book" name="Cellcart" value="Book" className="cart0 hide" checked={activetab === 0}/>
+            <input type="radio" id="Book" name="Cellcart" value="Book" className="cart0 hide" checked={activetab === 1}/>
             <div className="">
+                Booking list:
                 <Wrappedrowlist item={Rowitemcartdisplay} handleClick={(id) => handleClick("Remove from bookcart", id)} list={bookcart} g="g" />    
             </div>
-            <input type="radio" id="Shopping" name="Cellcart" value="Shopping" className="cart0 hide" checked={activetab === 1}/>
-            
+            <input type="radio" id="Shopping" name="Cellcart" value="Shopping" className="cart0 hide" checked={activetab === 0}/>
             <div className="">
+                Shopping list:
                 <Wrappedrowlist item={Rowitemcartdisplay} handleClick={(id) => handleClick("Remove from shopcart", id)}  list={shopcart} g="g" />    
             </div>            
             <label for="cart" className="corebox_2 row items_center corebox_x8 center f_1 btn_u" >Close</label>

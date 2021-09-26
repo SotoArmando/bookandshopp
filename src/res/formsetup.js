@@ -1,5 +1,5 @@
 let newsession = Object.entries({
-    "mail": {
+    "user": {
         holder: "Type an email",
         type: "email",
         regex: '([a-zA-Z0-9]+[\.|_|\-]*)*@(gmail|hotmail|live|yahoo)\.(com|es)?'
@@ -11,7 +11,7 @@ let newsession = Object.entries({
 })
 
 let newuser = Object.entries({
-    "mail": {
+    "user": {
         holder: "Type an email",
         type: "email",
         regex: '([a-zA-Z0-9]+[\.|_|\-]*)*@(gmail|hotmail|live|yahoo)\.(com|es)?',
@@ -20,8 +20,9 @@ let newuser = Object.entries({
         holder: "Type a Password",
         type: "password",
     },
-    "confirmpassword": {
+    "password_confirmation": {
         holder: "Confirm Password",
+        type: "password",
     },
     "nick": {
         holder: "Type a Nickname",
