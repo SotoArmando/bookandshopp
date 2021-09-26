@@ -14,18 +14,11 @@ export default function Rowitemcartdisplay({
     let {model,
         year,
         pictureid} = state;
-    
-    const [mode,setMode] = useState(0);
-        
-    let location = useLocation();
+
     if (year === 0) {
-        
         fetcher(url1+`/${id}`,(c)=> {
-            
             setState(c)
     }).fetch() }
-
-
     
     return <div className={`row back_3 borderradius_14  mar_l${marginh} mar_r${marginh} mar_t${marginv} mar_b${marginv} half_horizontalmar half_verticalmar`}>
         <div className="corebox_4 corebox_x4  cover" style={{

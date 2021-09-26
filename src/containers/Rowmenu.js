@@ -58,7 +58,7 @@ function Rowmenu({ bookcart,shopcart,u_appstate,u_session,activesession,active,u
             {
                 paths.map(([k,v]) => [
                 <input type="radio" id={k} name="Rowmenupaths" value={k}  className="hide"/>,
-                <label for={k} className="corebox_2 row items_center corebox_x5 center f_1 btn_u" onClick={() => handleRowmenuClick(k)}>{k}</label>])
+                <label for={k} className="corebox_2 row items_center corebox_x5 center f_0 btn_u" onClick={() => handleRowmenuClick(k)}>{k}</label>])
             }
         </div>
     </div>

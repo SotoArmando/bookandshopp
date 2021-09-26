@@ -7,12 +7,14 @@ import Pagehomepath from './containers/Pagehomepath';
 import { useEffect, useState } from 'react';
 import { dbkeys, fetcher } from './fetch';
 import Pagesignsession from './containers/Pagesignsession';
+import Pageitempreview from './containers/Pageitempreview';
 
 function App() {
   let paths = {
     "/shop": Pagehomepath,
     "/book": Pagehomepath,
     "/sign": Pagesignsession,
+    "/preview/:id": Pageitempreview,
     "/": Pagehomepath,
   };
 
