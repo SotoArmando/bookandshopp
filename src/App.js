@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import { dbkeys, fetcher } from './fetch';
 import Pagesignsession from './containers/Pagesignsession';
 import Pageitempreview from './containers/Pageitempreview';
+import './res/fonts/Inter/stylesheet.css';
+import './res/fonts/Opensans/stylesheet.css';
 
 function App() {
   let paths = {
