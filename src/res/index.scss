@@ -22,6 +22,7 @@
 @mixin app($bodywidth, $proportion) {
   .hide {
     display: none;
+    pointer-events: none;
   }
   .nav_body {
     width: $bodywidth !important;

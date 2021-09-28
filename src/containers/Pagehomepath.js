@@ -23,7 +23,6 @@ function Pagehomepath({appstate: { data }, u_appstate,u_Pagehomepath,bookcart,sh
                 history.push("/preview/"+id)
                 break;
             case "Add to Cart":
-                console.log(id)
                 u_appstate("shopcart", [...shopcart,id])
                 upstreamUser(sessionid,{...activesession,bookcart,shopcart:[...shopcart,id]})
                 break;

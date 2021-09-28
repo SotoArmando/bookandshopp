@@ -55,7 +55,7 @@ function App() {
       <div className="corebox_0"/>
       <Switch>
         {Object.entries(paths).map(({ 0: route, 1: View }) => (
-          <Route path={route}>
+          <Route key={route} path={route}>
             <View appstate={appstate} upstreamUser={upstreamUser} />
           </Route>
         ))}

@@ -23,7 +23,6 @@ function Forminput({
           .reduce((prev, [key, value]) => ({ ...prev, [key]: 1 }), {})
       ),
     ];
-  console.log(isfocusinput);
 
   const handleFocus = (ev, val) => {
     if (val != isfocusinput) {
