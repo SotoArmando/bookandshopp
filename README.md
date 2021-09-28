@@ -41,7 +41,7 @@ npm run
 - https://bookandshoprails.herokuapp.com/sessions
 
 - https://bookandshopp.herokuapp.com/
-- https://bookandshopp.herokuapp.com/preview
+- https://bookandshopp.herokuapp.com/preview/:id
 - https://bookandshopp.herokuapp.com/shop
 - https://bookandshopp.herokuapp.com/book
 
