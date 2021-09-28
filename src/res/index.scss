@@ -119,7 +119,7 @@
 
       & > * {
         flex: 1 1 (1rem * core($i));
-        flex-grow: calc($bodywidth / (1rem * core($i)));
+        flex-grow: $bodywidth / calc(1rem * core($i));
       }
     }
     &.box.corebox_x#{$i} {
