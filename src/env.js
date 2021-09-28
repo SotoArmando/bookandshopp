@@ -1,1 +1,2 @@
-export const rapidapi = process.env.REACT_APP_RAPIDAPI;
+const rapidapi = process.env.REACT_APP_RAPIDAPI;
+export default rapidapi;
