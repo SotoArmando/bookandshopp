@@ -1,10 +1,6 @@
-# cookingreactcapstoned
+# Bookandshopp
 
-> One paragraph statement about the project.
-
-
-
-Additional description about the project and its features.
+Allows users to make a shopping list and a booking list over models presented on the page using also preview as detailed view.
 
 ## Built With
 - Ruby on Rails API
@@ -21,7 +17,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link](https://dothiscookingsite.herokuapp.com/)
+[Live Demo Link](https://bookandshopp.herokuapp.com/)
 
 To get a local copy up and running follow these simple example steps.
 
@@ -33,23 +29,27 @@ This project was built using Node 16.14.1, to compile the source follow up insta
 
 ### Install
 
-Git clone https://github.com/SotoArmando/cookingreactcapstoned
+Git clone https://github.com/SotoArmando/bookandshopp
 npm install
 npm run
 
 ### Usage
 
-"./": Homepath (Latest Recipes, Recipes Categories and Search Filter)
-"./recipe/id": Recipepath (Fetches recipe id and display details )
+https://bookandshoprails.herokuapp.com/
+  https://bookandshoprails.herokuapp.com/items
+  https://bookandshoprails.herokuapp.com/users
+  https://bookandshoprails.herokuapp.com/sessions
 
+https://bookandshopp.herokuapp.com/
+  https://bookandshopp.herokuapp.com/preview
+  https://bookandshopp.herokuapp.com/shop
+  https://bookandshopp.herokuapp.com/book
 
 ### Run tests
 
 Git clone https://github.com/SotoArmando/cookingreactcapstoned
 npm install
 npm test
-
-
 
 ## Authors
 
