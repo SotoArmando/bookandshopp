@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -21,10 +22,12 @@ export default function Colummenu() {
       <div className="corebox_11 col center items_start pad_l30 back_2 bodyheight">
         {
             paths.map(([k, v]) => (
-              <label key={`Columnmenu${k}`} aria-hidden="true" htmlFor={k} className="corebox_2 row items_center  f500 f_2 btn_u pad_l22" onClick={() => history.push(v)}>
-                <input type="radio" id={k} name="Colummenupaths" value={k} className="" />
-                {k}
-              </label>
+              [
+                <input key={`Columenupaths${k}`} type="radio" id={k} name="Colummenupaths" value={k} className="" />,
+                <label key={`Columnmenu${k}`} aria-hidden="true" htmlFor={k} for={k} className="corebox_2 row items_center  f500 f_2 btn_u pad_l22" onClick={() => history.push(v)}>
+                  {k}
+                </label>,
+              ]
             ))
         }
       </div>
@@ -38,7 +41,7 @@ export default function Colummenu() {
       <div className="corebox_11 col center items_start pad_l30 ">
         {
         paths.map(([k, v]) => (
-          <label key={`Columnmenu${k}`} aria-hidden="true" htmlFor={`m${k}`} className="corebox_2 row items_center  f500 f_2 btn_u pad_l22" onClick={() => history.push(v)}>
+          <label key={`Columnmenu${k}`} aria-hidden="true" htmlFor={`m${k}`} for={`m${k}`} className="corebox_2 row items_center  f500 f_2 btn_u pad_l22" onClick={() => history.push(v)}>
             <input type="radio" id={`m${k}`} name="Colummenupaths" value={k} className="" />
             {k}
           </label>

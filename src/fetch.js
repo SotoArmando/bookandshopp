@@ -27,8 +27,8 @@ const Defaultstate = {
   session: {
     active: false,
     activesession: {
-      id: undefined,
-      user: undefined,
+      id: -1,
+      user: '',
       bookcart: [],
       shopcart: [],
     },

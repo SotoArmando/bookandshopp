@@ -40,9 +40,11 @@ function App() {
 
   useEffect(() => {
     const { 'Return all items in db': url0 } = dbkeys;
-    fetcher([url0], (response) => {
-      setAppstate({ ...setAppstate, data: response[0] });
-    }).fetchandwaitAll();
+    fetcher(url0, (response) => {
+      setAppstate({ ...appstate, data: response });
+      console.log(response);
+      console.log(appstate);
+    }).fetch();
     setAppstate({ ...appstate, init: false });
   }, []);
 
@@ -54,7 +56,7 @@ function App() {
         <Switch>
           {Object.entries(paths).map(({ 0: route, 1: View }) => (
             <Route key={route} path={route}>
-              <View appstate={appstate} upstreamUser={upstreamUser} />
+              <View appdata={appstate} upstreamUser={upstreamUser} />
             </Route>
           ))}
           <Redirect to="/" />

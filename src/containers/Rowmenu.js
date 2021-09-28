@@ -81,9 +81,18 @@ Rowmenu.propTypes = {
     user: PropTypes.string,
     bookcart: PropTypes.arrayOf(PropTypes.number),
     shopcart: PropTypes.arrayOf(PropTypes.number),
-  }).isRequired,
+  }),
   active: PropTypes.bool.isRequired,
   upstreamUser: PropTypes.func.isRequired,
+};
+
+Rowmenu.defaultProps = {
+  activesession: {
+    id: 0,
+    user: '',
+    bookcart: [],
+    shopcart: [],
+  },
 };
 
 const mapStatetoProps = (

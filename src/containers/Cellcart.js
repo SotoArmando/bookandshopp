@@ -1,3 +1,8 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/no-unknown-property */
+// None of the samples at
+// https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/master/docs/rules/control-has-associated-label.md
+// currently gives a succesfull code
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Rowitemcartdisplay from '../components/Rowitemcartdisplay';
@@ -8,9 +13,9 @@ function Cellcart({ handleClick, bookcart, shopcart }) {
 
   return [
     <div key="Cellcart0" className=" corebox_2 mobilehide" data-testid="Cellcart">
-      <label htmlFor="cart" className="corebox_2 row items_center corebox_x8 center f_0 btn_u">
+      <input type="checkbox" id="cart" name="Rowmenudynamiccart" value="x" className="cart hide" />
+      <label htmlFor="cart" for="cart" className="corebox_2 row items_center corebox_x8 center f_0 btn_u">
         Cart
-        <input type="checkbox" id="cart" name="Rowmenudynamiccart" value="x" className="cart hide" />
       </label>
       <div className="absolute   mar_t33">
         <div className=" back_2 corebox_17 border_3 pad_t22 pad_b22 col ">
@@ -19,9 +24,9 @@ function Cellcart({ handleClick, bookcart, shopcart }) {
             {/* Enables the use of remote labels
             using clean css approach to switch from tabs */}
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="Shopping" className={`btn_u pad_l22 center corebox_3 ${activetab === 0 ? 'active_0' : ''}`} onClickCapture={() => { setActivetab(0); }}>Shopping</label>
+            <label htmlFor="Shopping" for="Shopping" className={`btn_u pad_l22 center corebox_3 ${activetab === 0 ? 'active_0' : ''}`} onClickCapture={() => { setActivetab(0); }}>Shopping</label>
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="Book" className={`btn_u pad_l22 center corebox_3 ${activetab === 1 ? 'active_0' : ''}`} onClickCapture={() => { setActivetab(1); }}>Book</label>
+            <label htmlFor="Book" for="Book" className={`btn_u pad_l22 center corebox_3 ${activetab === 1 ? 'active_0' : ''}`} onClickCapture={() => { setActivetab(1); }}>Book</label>
           </div>
           <input type="radio" id="Book" name="Cellcart" value="Book" className="cart0 hide" defaultChecked={activetab === 1} />
           <div className="">
@@ -36,14 +41,14 @@ function Cellcart({ handleClick, bookcart, shopcart }) {
           {/* Enables the use of remote labels
             using clean css approach to close cart */}
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label htmlFor="cart" className="corebox_2 row items_center corebox_x8 center f_1 btn_u">Close</label>
+          <label htmlFor="cart" for="cart" className="corebox_2 row items_center corebox_x8 center f_1 btn_u">Close</label>
         </div>
       </div>
     </div>,
     <div key="Cellcart1" className=" corebox_2 desktophide">
-      <label htmlFor="mcart" className="corebox_2 row items_center corebox_x8 center f_0 btn_u">
+      <input type="checkbox" id="mcart" name="Rowmenudynamicmcart" value="x" className="cart hide" />
+      <label htmlFor="mcart" for="mcart" className="corebox_2 row items_center corebox_x8 center f_0 btn_u">
         mcart
-        <input type="checkbox" id="mcart" name="Rowmenudynamicmcart" value="x" className="cart hide" />
       </label>
       <div className="absolute  center  mar_t33">
         <div className=" back_2 corebox_17 border_3 pad_t22 pad_b22 col ">
@@ -52,9 +57,9 @@ function Cellcart({ handleClick, bookcart, shopcart }) {
             {/* Enables the use of remote labels
             using clean css approach to switch from tabs */}
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="mShopping" className={`btn_u pad_l22 center corebox_3 ${activetab === 0 ? 'active_0' : ''}`} onClickCapture={() => { setActivetab(0); }}>mShopping</label>
+            <label htmlFor="mShopping" for="mShopping" className={`btn_u pad_l22 center corebox_3 ${activetab === 0 ? 'active_0' : ''}`} onClickCapture={() => { setActivetab(0); }}>mShopping</label>
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="mBook" className={`btn_u pad_l22 center corebox_3 ${activetab === 1 ? 'active_0' : ''}`} onClickCapture={() => { setActivetab(1); }}>mBook</label>
+            <label htmlFor="mBook" for="mBook" className={`btn_u pad_l22 center corebox_3 ${activetab === 1 ? 'active_0' : ''}`} onClickCapture={() => { setActivetab(1); }}>mBook</label>
           </div>
           <input type="radio" id="mBook" name="Cellmcart" value="mBook" className="cart0 hide" defaultChecked={activetab === 1} />
           <div className="">
@@ -69,7 +74,7 @@ function Cellcart({ handleClick, bookcart, shopcart }) {
           {/* Enables the use of remote labels
             using clean css approach to close cart */}
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label htmlFor="mcart" className="corebox_2 row items_center corebox_x8 center f_1 btn_u">Close</label>
+          <label htmlFor="mcart" for="mcart" className="corebox_2 row items_center corebox_x8 center f_1 btn_u">Close</label>
         </div>
       </div>
     </div>,

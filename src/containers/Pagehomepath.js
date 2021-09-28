@@ -6,7 +6,7 @@ import Cellitemdisplay from '../components/Cellitemdisplay';
 import Wrappedrowlist from '../components/Wrappedrowlist';
 
 function Pagehomepath({
-  appstate: { data }, u_appstate: Uappstate, bookcart,
+  appdata: { data }, u_appstate: Uappstate, bookcart,
   shopcart, upstreamUser, activesession,
 }) {
   const history = useHistory();
@@ -14,6 +14,7 @@ function Pagehomepath({
   const handleItemsClick = (operation, {
     id,
   }) => {
+    console.log(operation, id);
     const { id: sessionid } = activesession;
     // Enables the use Is not an number to check id passed to the rowitemcartdisplay
     // eslint-disable-next-line no-restricted-globals
@@ -54,7 +55,7 @@ Pagehomepath.propTypes = {
   u_appstate: PropTypes.func.isRequired,
   bookcart: PropTypes.arrayOf(PropTypes.number).isRequired,
   shopcart: PropTypes.arrayOf(PropTypes.number).isRequired,
-  appstate: PropTypes.shape({
+  appdata: PropTypes.shape({
     data: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
       make: PropTypes.string,

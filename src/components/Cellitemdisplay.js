@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import PropTypes from 'prop-types';
@@ -13,6 +14,7 @@ export default function Cellitemdisplay({
   marginh,
   marginv,
 }) {
+  console.log(id);
   const payload = {
     make, model, year, pictureid, id,
   };
@@ -33,7 +35,7 @@ export default function Cellitemdisplay({
       // Enables the use of remote labels
       // using clean css approach to switch from tabs
       // eslint-disable-next-line jsx-a11y/label-has-associated-control
-      <label key={`Cellitemdisplaymodel1label${id}`} aria-hidden="true" htmlFor={pictureid} className="corebox_2 row items_center corebox_x8 center f_1 btn_u" data-testid="Cellitemdisplay_checkbtn" onClick={() => handleClick('Add to Booking', payload)}>Check</label>],
+      <label key={`Cellitemdisplaymodel1label${id}`} aria-hidden="true" htmlFor={pictureid} for={pictureid} className="corebox_2 row items_center corebox_x8 center f_1 btn_u" data-testid="Cellitemdisplay_checkbtn" onClick={() => handleClick('Add to Booking', payload)}>Check</label>],
     <button type="button" key={`Cellitemdisplaymodel2${id}`} className="corebox_2 row items_center corebox_x8 center f_1 btn_u" data-testid="Cellitemdisplay_addtocartbtn" onClick={() => handleClick('Add to Cart', payload)}>Add to Cart</button>,
   ];
 
