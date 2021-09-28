@@ -6,6 +6,7 @@ import { createMapDispatchtoProps } from "../reducers/createDefaultreducer";
 
 function Pageitempreview({upstreamUser}) {
     let {id} = useParams();
+    if (isNaN(id)) { throw 'Pageitempreview: id is not an number'}
     let [state, setState] = useState({model:0,year:0,pictureid:0});
     let {model,
         year,
@@ -15,7 +16,7 @@ function Pageitempreview({upstreamUser}) {
         fetcher(url1+`/${id}`,(c)=> {
             setState(c)
     }).fetch() }
-    return [<div className="col center ">
+    return [<div data-testid='Pageitempreview' className="col center ">
         <span className="allsize corebox_15 mobilecorebox_13 contain norepeat" style={{
             backgroundImage:`url(${url0(pictureid)})`
         }}/>

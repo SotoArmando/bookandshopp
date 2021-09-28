@@ -39,6 +39,6 @@ export default function Cellitemdisplay({
             <div>{model} - {year}</div>
         </div>
         {modes[mode]}
-        <button className="corebox_2 row items_center corebox_x8 center f_1 btn_u" onClick={()=> handleClick("Preview",payload)} >Preview</button>
+        <button className="corebox_2 row items_center corebox_x8 center f_1 btn_u" data-testid="Cellitemdisplay_previewtbtn" onClick={()=> handleClick("Preview",payload)} >Preview</button>
     </div>
 }

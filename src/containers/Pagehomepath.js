@@ -16,8 +16,7 @@ function Pagehomepath({appstate: { data }, u_appstate,u_Pagehomepath,bookcart,sh
         pictureid}) {
         
         const {id:sessionid} = activesession
-        
-
+        if (isNaN(id)) { return }
         switch(operation) {
             case "Preview":
                 history.push("/preview/"+id)
@@ -30,14 +29,12 @@ function Pagehomepath({appstate: { data }, u_appstate,u_Pagehomepath,bookcart,sh
                 u_appstate("bookcart", [...bookcart,id])
                 upstreamUser(sessionid,{...activesession,shopcart,bookcart:[...bookcart,id]})
                 break;
-            case "Add to Booking":
-                u_appstate("bookcart", [...bookcart,id])
-                upstreamUser(sessionid,{...activesession,shopcart,bookcart:[...bookcart,id]})
-                break;
+
         }
     }
     return <div className="">
         <Wrappedrowlist 
+        testid='Pagehomepathwrappedrowlist'
         className="center"
         handleClick={handleItemsClick}
         item={Cellitemdisplay} list={data}
