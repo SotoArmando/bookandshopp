@@ -46,15 +46,7 @@ test('Assert Pagehomepath should display 10 items from presaved state', async ()
         );
     });
 
-    // //  Cellitemdisplay_checkbtn
     await waitFor(() => screen.getAllByTestId('Cellitemdisplay'));
-    // await waitFor(() => screen.getAllByTestId('Cellitemdisplay_addtocartbtn'));
-    // fireEvent.click(screen.getAllByTestId('Cellitemdisplay_addtocartbtn')[0]);
-    // fireEvent.click(screen.getAllByTestId('Cellitemdisplay_addtocartbtn')[1]);
-    // await waitFor(() => screen.getAllByTestId('Rowitemcartdisplay'));
-    // await waitFor(() => screen.getAllByTestId('Rowitemcartdisplay_removebtn'));
-    // fireEvent.click(screen.getAllByTestId('Rowitemcartdisplay_removebtn')[0]);
-    // fireEvent.click(screen.getAllByTestId('Rowitemcartdisplay_removebtn')[1]);
 
     expect((await screen.findByTestId('Pagehomepathwrappedrowlist')).children[0].children).toHaveLength(10);
 });
