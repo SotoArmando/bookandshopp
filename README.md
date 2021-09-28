@@ -35,6 +35,7 @@ npm run
 
 ### Usage
 
+
 - https://bookandshoprails.herokuapp.com/
 - https://bookandshoprails.herokuapp.com/items
 - https://bookandshoprails.herokuapp.com/users
@@ -44,6 +45,7 @@ npm run
 - https://bookandshopp.herokuapp.com/preview/:id
 - https://bookandshopp.herokuapp.com/shop
 - https://bookandshopp.herokuapp.com/book
+
 
 ### Run tests
 
