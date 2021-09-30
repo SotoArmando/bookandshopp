@@ -44,7 +44,6 @@ export default function Rowitemcartdisplay({
       </div>
       <button type="button" data-testid="Rowitemcartdisplay_removebtn" className="corebox_2 row items_center  center f_0 btn_u maxedcorebox_x5" onClick={() => handleClick(id)}>
         Remove
-        {id}
       </button>
     </div>
   );

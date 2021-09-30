@@ -1200,6 +1200,12 @@
     background-size: contain;
     background-position: center;
   }
+
+  // BEGIN: APP SCOPE => CUSTOMIZATION [REMOVE IF THIS PART IS NEW FOR YOU
+  button {
+    border: 0 !important;
+  }
+  // END: APP SCOPE
 }
 
 @media (orientation: portrait), (max-width: 1000px) {
