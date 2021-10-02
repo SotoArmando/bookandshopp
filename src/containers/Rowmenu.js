@@ -10,8 +10,6 @@ function Rowmenu({
   RemovepreviousSession,
   activesession: { bookcart, shopcart, id: activesessionid }, active, upstreamUser,
 }) {
-  console.log('bookcart', bookcart);
-  console.log('shopcart', shopcart);
   const history = useHistory();
 
   const handleCartClick = useCallback((operation, id) => {

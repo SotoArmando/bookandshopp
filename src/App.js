@@ -29,8 +29,6 @@ function App() {
     const { 'Return all items in db': url0 } = dbkeys;
     const { authorization } = appstate;
     fetcher(url0, (response) => {
-      console.log(response);
-      console.log(response);
       setAppstate({ ...appstate, data: response });
     }, authorization).fetch();
     setAppstate({ ...appstate, init: false });

@@ -23,7 +23,6 @@ function Pagehomepath({
         history.push(`/preview/${id}`);
         break;
       case 'Add to Cart':
-        console.log('added to cart', id);
         addStoreitemToShopcart(id);
         upstreamUser(sessionid, { ...activesession, bookcart, shopcart: [...shopcart, id] });
         break;

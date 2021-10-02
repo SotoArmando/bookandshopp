@@ -18,7 +18,6 @@ export default function Cellitemdisplay({
   marginh,
   marginv,
 }) {
-  console.log(id);
   const payload = {
     make, model, year, pictureid, id,
   };
