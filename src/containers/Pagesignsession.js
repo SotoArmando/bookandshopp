@@ -19,10 +19,10 @@ function Pagesignsession({
   }
 
   function handleSuccesfulAuthorization({
-    username, id, token, bookcart, shopcart, exp,
+    user, id, token, bookcart, shopcart, exp,
   }) {
     syncroniseUserSession({
-      username, id, bookcart, shopcart,
+      user, id, bookcart, shopcart,
     }, token);
     setAppstate({ ...appdata, authorization: token, expiration: exp });
     history.push('/');
@@ -53,11 +53,13 @@ function Pagesignsession({
   function handleSubmit(event) {
     setErrors([]);
     event.preventDefault();
-    if (formstate.password === formstate.confirm_password) {
-      if (sign) { handleSessionProvide('Sign up', formstate); } else { handleSessionProvide('Sign in', formstate); }
-    } else {
-      setErrors(['Confirm password and password must be equal']);
-    }
+    if (sign) {
+      if (formstate.password === formstate.confirm_password) {
+        handleSessionProvide('Sign up', formstate);
+      } else {
+        setErrors(['Confirm password and password must be equal']);
+      }
+    } else { handleSessionProvide('Sign in', formstate); }
   }
 
   return (
@@ -76,17 +78,19 @@ function Pagesignsession({
             </label>
             {sign
               ? (
-                <label htmlFor="confirminput" className="pad_t22">
-                  Confirm Password
-                  <input id="confirminput" type="password" name="confirm_password" value={formstate.confirm_password} className="border_3 corebox_2" onChange={handleChange} />
-                </label>
+                [
+                  <label key="inputconfirm" htmlFor="confirminput" className="pad_t22">
+                    Confirm Password
+                    <input id="confirminput" type="password" name="confirm_password" value={formstate.confirm_password} className="border_3 corebox_2" onChange={handleChange} />
+                  </label>,
+                  <label key="inputnick" htmlFor="nickinput" className="pad_t22">
+                    Nick
+                    <input htmlFor="nickinput" name="nick" className="border_3 corebox_2" value={formstate.nick} onChange={handleChange} />
+                  </label>]
               )
 
               : []}
-            <label htmlFor="nickinput" className="pad_t22">
-              Nick
-              <input htmlFor="nickinput" name="nick" className="border_3 corebox_2" value={formstate.nick} onChange={handleChange} />
-            </label>
+
           </form>
           {
             errors.length > 0
