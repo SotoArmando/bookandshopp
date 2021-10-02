@@ -84,7 +84,7 @@ function Pagesignsession({
 
               : []}
             <label htmlFor="nickinput" className="pad_t22">
-              <input htmlFor="nickinput" name="nick" value={formstate.nick} onChange={handleChange} />
+              <input htmlFor="nickinput" name="nick" className="border_3 corebox_2" value={formstate.nick} onChange={handleChange} />
             </label>
           </form>
           {

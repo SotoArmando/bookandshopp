@@ -68,12 +68,12 @@ Cellitemdisplay.propTypes = {
   marginh: PropTypes.number.isRequired,
   marginv: PropTypes.number.isRequired,
   item: PropTypes.shape({
-    make: PropTypes.number.isRequired,
+    make: PropTypes.string.isRequired,
     model: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,
   picture: PropTypes.shape({
-    pictureid: PropTypes.number.isRequired,
+    pictureid: PropTypes.string.isRequired,
   }).isRequired,
 };

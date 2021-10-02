@@ -19,9 +19,6 @@ const dbkeys = {
 };
 
 const Defaultstate = {
-  Pagehomepath: {
-    previewid: 0,
-  },
   appstate: {
     bookcart: [],
     shopcart: [],
@@ -35,7 +32,6 @@ const Defaultstate = {
       shopcart: [],
     },
   },
-  system: { isfocusinput: false },
 };
 function buildFormData(formData, data, parentKey) {
   if (data && typeof data === 'object' && !(data instanceof Date) && !(data instanceof File)) {
