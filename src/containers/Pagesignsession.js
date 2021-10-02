@@ -37,7 +37,7 @@ function Pagesignsession({
     switch (operation) {
       case 'Sign up':
         sessionProvider(payload,
-          handleSuccesfulAuthorization,
+          () => { setSign(false); },
           handleUnauthorizederrors).createnewUser();
         break;
       case 'Sign in':
@@ -51,8 +51,13 @@ function Pagesignsession({
   }
 
   function handleSubmit(event) {
+    setErrors([]);
     event.preventDefault();
-    if (sign) { handleSessionProvide('Sign up', formstate); } else { handleSessionProvide('Sign in', formstate); }
+    if (formstate.password === formstate.confirm_password) {
+      if (sign) { handleSessionProvide('Sign up', formstate); } else { handleSessionProvide('Sign in', formstate); }
+    } else {
+      setErrors(['Confirm password and password must be equal']);
+    }
   }
 
   return (
@@ -73,7 +78,7 @@ function Pagesignsession({
               ? (
                 <label htmlFor="confirminput" className="pad_t22">
                   Confirm Password
-                  <input id="confirminput" name="confirm_password" value={formstate.confirm_password} className="border_3 corebox_2" onChange={handleChange} />
+                  <input id="confirminput" type="password" name="confirm_password" value={formstate.confirm_password} className="border_3 corebox_2" onChange={handleChange} />
                 </label>
               )
 
