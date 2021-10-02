@@ -1,20 +1,19 @@
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import { createMapDispatchtoProps } from '../reducers/createDefaultreducer';
+import { useEffect } from 'react';
 import Cellitemdisplay from '../components/Cellitemdisplay';
 import Wrappedrowlist from '../components/Wrappedrowlist';
 
 function Pagehomepath({
-  appdata: { data }, u_appstate: Uappstate, bookcart,
-  shopcart, upstreamUser, activesession,
+  appdata: { data }, addStoreitemToShopcart, addStoreitemToBookcart, syncronizeStoreItems,
+  shopcart, bookcart, upstreamUser, activesession,
 }) {
   const history = useHistory();
 
   const handleItemsClick = (operation, {
     id,
   }) => {
-    console.log(operation, id);
     const { id: sessionid } = activesession;
     // Enables the use Is not an number to check id passed to the rowitemcartdisplay
     // eslint-disable-next-line no-restricted-globals
@@ -24,17 +23,24 @@ function Pagehomepath({
         history.push(`/preview/${id}`);
         break;
       case 'Add to Cart':
-        Uappstate('shopcart', [...shopcart, id]);
+        addStoreitemToShopcart(id);
         upstreamUser(sessionid, { ...activesession, bookcart, shopcart: [...shopcart, id] });
         break;
       case 'Add to Booking':
-        Uappstate('bookcart', [...bookcart, id]);
+        addStoreitemToBookcart(id);
         upstreamUser(sessionid, { ...activesession, shopcart, bookcart: [...bookcart, id] });
         break;
       default:
         break;
     }
   };
+
+  useEffect(() => {
+    if (data.length > 0) {
+      syncronizeStoreItems(data);
+    }
+  }, [data]);
+
   return (
     <div className="">
       <Wrappedrowlist
@@ -52,7 +58,9 @@ function Pagehomepath({
 }
 
 Pagehomepath.propTypes = {
-  u_appstate: PropTypes.func.isRequired,
+  addStoreitemToShopcart: PropTypes.func.isRequired,
+  addStoreitemToBookcart: PropTypes.func.isRequired,
+  syncronizeStoreItems: PropTypes.func.isRequired,
   bookcart: PropTypes.arrayOf(PropTypes.number).isRequired,
   shopcart: PropTypes.arrayOf(PropTypes.number).isRequired,
   appdata: PropTypes.shape({
@@ -80,6 +88,11 @@ const mapStatetoProps = (
     session: { activesession },
   },
 ) => ({ bookcart, shopcart, activesession });
-const mapDispatchtoProps = createMapDispatchtoProps();
+
+const mapDispatchtoProps = (dispatch) => ({
+  addStoreitemToShopcart: (id) => dispatch({ type: 'appstate/updateUserShoppingCart', cartitem: id }),
+  addStoreitemToBookcart: (id) => dispatch({ type: 'appstate/updateUserBookingCart', cartitem: id }),
+  syncronizeStoreItems: (storeitems) => dispatch({ type: 'appstate/updateStoreItems', storeitems }),
+});
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(Pagehomepath);

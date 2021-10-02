@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import { dbkeys, fetcher } from '../fetch';
-import { createMapDispatchtoProps } from '../reducers/createDefaultreducer';
 
 function Pageitempreview() {
   const { id } = useParams();
@@ -15,8 +13,8 @@ function Pageitempreview() {
   } = state;
   const { 'Return item picture using id': url0, items_crud: url1 } = dbkeys;
   useEffect(() => {
-    fetcher(`${url1}/${id}`, (c) => {
-      setState(c);
+    fetcher(`${url1}/${id}`, ({ item, picture: { pictureid } }) => {
+      setState({ ...item, pictureid });
     }).fetch();
   }, []);
   return [
@@ -109,10 +107,4 @@ function Pageitempreview() {
     </div>];
 }
 
-const mapStatetoProps = ({
-  appstate: { bookcart, shopcart },
-  session: { activesession },
-}) => ({ bookcart, shopcart, activesession });
-const mapDispatchtoProps = createMapDispatchtoProps();
-
-export default connect(mapStatetoProps, mapDispatchtoProps)(Pageitempreview);
+export default Pageitempreview;

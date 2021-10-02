@@ -1,6 +1,6 @@
 import rapidapi from './env';
-// const Serverdomain = "http://127.0.0.1:3000/";
-const Serverdomain = 'https://bookandshoprails.herokuapp.com/';
+const Serverdomain = "http://127.0.0.1:3000/";
+// const Serverdomain = 'https://bookandshoprails.herokuapp.com/';
 
 const Serverdomainurls = {
   'Return all items in db': `${Serverdomain}items`,
@@ -9,6 +9,7 @@ const Serverdomainurls = {
   users_crud: `${Serverdomain}users`,
   items_crud: `${Serverdomain}items`,
   sessions_crud: `${Serverdomain}sessions`,
+  authenticate: `${Serverdomain}auth`,
 };
 
 const dbkeys = {
@@ -55,7 +56,7 @@ function jsonToFormData(data) {
   return formData;
 }
 
-function fetcher(url, call) {
+function fetcher(url, call, authorization) {
   const options = {
     method: 'GET',
     headers: {
@@ -90,6 +91,7 @@ function fetcher(url, call) {
         ...options,
         headers: {
           Accept: 'application/json',
+          Authorization: authorization,
         },
         method: operation,
         body: operation === 'GET' ? undefined : jsonToFormData(body),

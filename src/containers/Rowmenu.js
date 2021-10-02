@@ -2,46 +2,38 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
-import { createMapDispatchtoProps } from '../reducers/createDefaultreducer';
 import Cellcart from './Cellcart';
 import Colummenu from '../components/Columnmenu';
 
 function Rowmenu({
-  bookcart, shopcart, u_appstate: Uappstate,
-  u_session: Usession, activesession, active, upstreamUser,
+  bookcart, shopcart, RemoveStoreitemfromShopcart, RemoveStoreitemfromBookcart,
+  RemovepreviousSession, activesession, active, upstreamUser,
 }) {
   const history = useHistory();
 
   const handleCartClick = useCallback((operation, id) => {
     switch (operation) {
       case 'Remove from shopcart':
-        Uappstate('shopcart', shopcart.filter((e) => e !== id));
+        RemoveStoreitemfromShopcart(id);
         upstreamUser(activesession.id, { shopcart: shopcart.filter((e) => e !== id) });
         break;
       case 'Remove from bookcart':
-        Uappstate('bookcart', bookcart.filter((e) => e !== id));
+        RemoveStoreitemfromBookcart(id);
         upstreamUser(activesession.id, { bookcart: bookcart.filter((e) => e !== id) });
         break;
       default:
         break;
     }
-  }, [Uappstate, upstreamUser]);
+  });
 
-  function handleRowmenuClick(k) {
+  function handleRowmenuClick(k, v) {
     switch (k) {
       case 'Sign out':
-        Uappstate('bookcart', []);
-        Uappstate('shopcart', []);
-        Usession('active', false);
-        Usession('activesession', {
-          id: 0,
-          user: undefined,
-          bookcart: [],
-          shopcart: [],
-        });
+        RemovepreviousSession();
+        history.push(v);
         break;
       default:
-        history.push(k);
+        history.push(v);
         break;
     }
   }
@@ -60,11 +52,11 @@ function Rowmenu({
       <div className="row">
         <Cellcart handleClick={handleCartClick} bookcart={bookcart} shopcart={shopcart} />
         {
-          paths.map(([k]) => [
+          paths.map(([k, v]) => [
             <input key={`Rowmenupathinput${k}`} type="radio" id={k} name="Rowmenupaths" value={k} className="hide" />,
             // Enables the use of labels x input to use a clean css check effect
             // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-            <label role="button" key={`Rowmenupathlabel${k}`} htmlFor={k} className="corebox_2 row items_center corebox_x5 center f_0 btn_u" onKeyDown={() => handleRowmenuClick(k)} onClick={() => handleRowmenuClick(k)}>{k}</label>])
+            <label role="button" key={`Rowmenupathlabel${k}`} htmlFor={k} className="corebox_2 row items_center corebox_x5 center f_0 btn_u" onKeyDown={() => handleRowmenuClick(v)} onClick={() => handleRowmenuClick(k, v)}>{k}</label>])
         }
       </div>
     </div>,
@@ -74,8 +66,9 @@ function Rowmenu({
 Rowmenu.propTypes = {
   bookcart: PropTypes.arrayOf(PropTypes.number).isRequired,
   shopcart: PropTypes.arrayOf(PropTypes.number).isRequired,
-  u_appstate: PropTypes.func.isRequired,
-  u_session: PropTypes.func.isRequired,
+  RemoveStoreitemfromShopcart: PropTypes.func.isRequired,
+  RemoveStoreitemfromBookcart: PropTypes.func.isRequired,
+  RemovepreviousSession: PropTypes.func.isRequired,
   activesession: PropTypes.shape({
     id: PropTypes.number,
     user: PropTypes.string,
@@ -103,6 +96,10 @@ const mapStatetoProps = (
 ) => ({
   bookcart, shopcart, activesession, active,
 });
-const mapDispatchtoProps = createMapDispatchtoProps();
+const mapDispatchtoProps = (dispatch) => ({
+  RemoveStoreitemfromShopcart: (cartitem) => dispatch({ type: 'appstate/deleteStoreItemFromUserShoppingCart', cartitem }),
+  RemoveStoreitemfromBookcart: (cartitem) => dispatch({ type: 'appstate/deleteStoreItemFromUserBookingCart', cartitem }),
+  RemovepreviousSession: () => dispatch({ type: 'sessions/Logout' }),
+});
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(Rowmenu);

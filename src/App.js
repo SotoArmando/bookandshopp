@@ -8,6 +8,7 @@ import Pagesignsession from './containers/Pagesignsession';
 import Pageitempreview from './containers/Pageitempreview';
 import './res/fonts/Inter/stylesheet.scss';
 import './res/fonts/Opensans/stylesheet.scss';
+import sessionProvider from './res/sessionprovider';
 
 function App() {
   const paths = {
@@ -19,34 +20,24 @@ function App() {
   };
 
   const [appstate, setAppstate] = useState({
-    makeid: 100,
-    year: 2015,
+    authorization: undefined,
     data: [],
     init: true,
   });
-  function deleteIdkey(a) {
-    // https://eslint.org/docs/rules/no-param-reassign
-    // eslint-disable-next-line no-param-reassign
-    delete a.id;
-  }
-
-  const upstreamUser = (id, payload) => {
-    deleteIdkey(payload);
-    if (id) {
-      const { users_crud: url0 } = dbkeys;
-      fetcher(`${url0}/${id}?${new URLSearchParams({ user: JSON.stringify(payload) }).toString()}`).fetchcrudOperation('PATCH');
-    }
-  };
 
   useEffect(() => {
     const { 'Return all items in db': url0 } = dbkeys;
+    const { authorization } = appstate;
     fetcher(url0, (response) => {
       setAppstate({ ...appstate, data: response });
-      console.log(response);
-      console.log(appstate);
-    }).fetch();
+    }, authorization).fetch();
     setAppstate({ ...appstate, init: false });
   }, []);
+
+  const upstreamUser = (id, payload) => {
+    const { authorization } = appstate;
+    sessionProvider().upstreamUser(id, payload, authorization);
+  };
 
   return (
     <div className="App col items_center">
@@ -56,7 +47,7 @@ function App() {
         <Switch>
           {Object.entries(paths).map(({ 0: route, 1: View }) => (
             <Route key={route} path={route}>
-              <View appdata={appstate} upstreamUser={upstreamUser} />
+              <View appdata={appstate} setAppstate={setAppstate} upstreamUser={upstreamUser} />
             </Route>
           ))}
           <Redirect to="/" />

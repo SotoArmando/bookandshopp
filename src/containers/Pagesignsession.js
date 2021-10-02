@@ -2,64 +2,102 @@ import { connect } from 'react-redux';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import { createMapDispatchtoProps } from '../reducers/createDefaultreducer';
-import Forminput from '../components/Forminput';
-import { newuser, newsession } from '../res/formsetup';
-import { dbkeys, fetcher } from '../fetch';
+import sessionProvider from '../res/sessionprovider';
 
 function Pagesignsession({
-  u_appstate: Uappstate,
-  u_session: Usession,
+  syncroniseUserSession,
+  setAppstate,
+  appdata,
 }) {
   const [sign, setSign] = useState(false);
+  const [errors, setErrors] = useState([]);
+  const [formstate, setState] = useState({});
   const history = useHistory();
 
-  function handleResponse({
-    status, bookcart, shopcart, id,
-  }, payload) {
-    const { user } = payload;
-    if (status === 'Succesfully Authenticated') {
-      Uappstate('bookcart', bookcart);
-      Uappstate('shopcart', shopcart);
-      Usession('active', true);
-      Usession('activesession', {
-        user,
-        bookcart,
-        shopcart,
-        id,
-      });
-      history.push('/');
-    }
+  function handleChange(event) {
+    setState({ ...formstate, [event.target.name]: event.target.value });
   }
 
-  function handleClick(operation, payload) {
-    const { users_crud: url0, sessions_crud: url1 } = dbkeys;
+  function handleSuccesfulAuthorization({
+    username, id, token, bookcart, shopcart, exp,
+  }) {
+    syncroniseUserSession({
+      username, id, bookcart, shopcart,
+    }, token);
+    setAppstate({ ...appdata, authorization: token, expiration: exp });
+    history.push('/');
+  }
 
+  function handleUnauthorizederrors(errors) {
+    setErrors(errors);
+  }
+
+  function handleSessionProvide(operation, payload) {
+    setErrors([]);
     switch (operation) {
       case 'Sign up':
-        fetcher(url0, (c) => handleResponse(c, payload)).fetchcrudOperation('POST', { user: payload });
+        sessionProvider(payload,
+          handleSuccesfulAuthorization,
+          handleUnauthorizederrors).createnewUser();
         break;
       case 'Sign in':
-        fetcher(url1, (c) => handleResponse(c, payload)).fetchcrudOperation('POST', { user: payload });
+        sessionProvider(payload,
+          handleSuccesfulAuthorization,
+          handleUnauthorizederrors).authorize();
         break;
       default:
         break;
     }
   }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (sign) { handleSessionProvide('Sign up', formstate); } else { handleSessionProvide('Sign in', formstate); }
+  }
+
   return (
     <div>
       <div className="center col">
         <div className="maxedcorebox_x18">
           <span className="f_2 corebox_3 row items_center">Welcome</span>
-          <Forminput entries={sign ? newuser : newsession} id="Signform" handleCapture={(c) => handleClick(sign ? 'Sign up' : 'Sign in', c)} />
-          <button type="button" className="corebox_2 center" onClick={() => setSign(!sign)}>Switch between sign in and sign up</button>
+          <form id="Signform" onSubmit={handleSubmit} className="col">
+            <label htmlFor="userinput" className="pad_t22">
+              Email
+              <input id="userinput" name="user" value={formstate.user} className="border_3 corebox_2" onChange={handleChange} />
+            </label>
+            <label htmlFor="passwordinput" className="pad_t22">
+              Password
+              <input id="passwordinput" name="password" value={formstate.password} className="border_3 corebox_2" type="password" onChange={handleChange} />
+            </label>
+            {sign
+              ? (
+                <label htmlFor="confirminput" className="pad_t22">
+                  Confirm Password
+                  <input id="confirminput" name="confirm_password" value={formstate.confirm_password} className="border_3 corebox_2" onChange={handleChange} />
+                </label>
+              )
+
+              : []}
+            <label htmlFor="nickinput" className="pad_t22">
+              <input htmlFor="nickinput" name="nick" value={formstate.nick} onChange={handleChange} />
+            </label>
+          </form>
+          {
+            errors.length > 0
+              ? errors.map((e) => <div key={`error${e}`} className="corebox_2 fore_red">{e}</div>)
+              : []
+          }
+          <div className="row">
+            <button type="button" className="corebox_2 center" onClick={() => setSign(true)}>Sign Up</button>
+            <button type="button" className="corebox_2 center" onClick={() => setSign(false)}>Sign In</button>
+          </div>
           <button
             form="Signform"
             type="submit"
             value="Submit"
             className="corebox_2 border_0 back_0 btn_u f_0"
           >
-            Submit Signform
+            Submit
           </button>
         </div>
       </div>
@@ -68,11 +106,24 @@ function Pagesignsession({
 }
 
 Pagesignsession.propTypes = {
-  u_appstate: PropTypes.func.isRequired,
-  u_session: PropTypes.number.isRequired,
+  syncroniseUserSession: PropTypes.func.isRequired,
+  setAppstate: PropTypes.func.isRequired,
+  appdata: PropTypes.arrayOf(PropTypes.shape({
+    item: PropTypes.shape({
+      make: PropTypes.string,
+      model: PropTypes.string,
+      year: PropTypes.number,
+      id: PropTypes.number,
+    }),
+    picture: PropTypes.shape({
+      pictureid: PropTypes.string,
+    }),
+  })).isRequired,
 };
 
 const mapStatetoProps = ({ appstate: { bookcart, shopcart } }) => ({ bookcart, shopcart });
-const mapDispatchtoProps = createMapDispatchtoProps();
+const mapDispatchtoProps = (dispatch) => ({
+  syncroniseUserSession: (user, authorization) => dispatch({ type: 'sessions/Login', user, authorization }),
+});
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(Pagesignsession);

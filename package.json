@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "aws-sdk": "^2.995.0",
     "bcrypt": "^5.0.1",
+    "crypto-js": "^4.1.1",
     "history": "^4.10.1",
     "mock-aws-s3": "^4.0.2",
     "msw": "^0.35.0",

@@ -8,6 +8,7 @@ export default function Rowitemcartdisplay({
   marginh,
   marginv,
 }) {
+  
   // Enables the use Is not an number to check id passed to the rowitemcartdisplay
   // eslint-disable-next-line no-restricted-globals
   if (isNaN(id)) { throw Error('Rowitemcartdisplay: Is not an number id'); }
@@ -20,8 +21,9 @@ export default function Rowitemcartdisplay({
     pictureid,
   } = state;
   useEffect(() => {
-    fetcher(`${url1}/${id}`, (c) => {
-      setState(c);
+    fetcher(`${url1}/${id}`, ({item,picture: {pictureid}}) => {
+      debugger;
+      setState({...item,pictureid});
     }).fetch();
   }, []);
 
