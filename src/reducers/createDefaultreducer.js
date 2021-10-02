@@ -1,6 +1,15 @@
-const ExpireTime = 60;
-function sessionsReducer(state, action) {
-  const { type, user, authorization } = action;
+function sessionsReducer(state = {
+  active: false,
+  activesession: {
+    user: '',
+    id: 0,
+    nick: '',
+  },
+  authorization: '',
+}, action) {
+  const {
+    type, user, authorization, cartitem,
+  } = action;
   switch (type) {
     case 'sessions/Login': {
       return {
@@ -15,74 +24,80 @@ function sessionsReducer(state, action) {
         ...state,
         active: false,
         activesession: {},
-        authorization: false,
+        authorization: '',
+      };
+    }
+    case 'sessions/updateUserShoppingCart': {
+      return {
+        ...state,
+        activesession: {
+          ...state.activesession,
+          shopcart: [...state.activesession.shopcart, cartitem],
+        },
+      };
+    }
+    case 'sessions/updateUserBookingCart': {
+      return {
+        ...state,
+        activesession: {
+          ...state.activesession,
+          bookcart: [...state.activesession.bookcart, cartitem],
+        },
+      };
+    }
+    case 'sessions/deleteStoreItemFromUserShoppingCart': {
+      return {
+        ...state,
+        activesession: {
+          ...state.activesession,
+          shopcart: [
+            ...state.activesession.shopcart.slice(0, cartitem),
+            ...state.activesession.shopcart.slice(cartitem + 1)],
+        },
+      };
+    }
+    case 'sessions/deleteStoreItemFromUserBookingCart': {
+      return {
+        ...state,
+        activesession: {
+          ...state.activesession,
+          bookcart: [
+            ...state.activesession.bookcart.slice(0, cartitem),
+            ...state.activesession.bookcart.slice(cartitem + 1)],
+        },
       };
     }
     case ('persist/REHYDRATE'): {
       const {
-        payload: { sessions: rehydrate, sessions: { LoadedAt } } =
-        { sessions: { LoadedAt: new Date().toISOString() } },
+        payload: { session: rehydrate } = { session: {} },
       } = action;
-      const expireDate = new Date(LoadedAt);
-      const isExpired = expireDate.setSeconds(expireDate.getSeconds() + ExpireTime) < new Date();
       const rehydrateorstate = (Object.keys(rehydrate).length > 1 ? rehydrate : state);
-      return { ...(isExpired ? state : rehydrateorstate) };
+      return { ...(rehydrateorstate) };
     }
     default:
       return state;
   }
 }
 
-function appstateReducer(state, action) {
+function appstateReducer(state = {
+  storeitems: [],
+}, action) {
   const {
-    type, cartitem, storeitems, authorization,
+    type, storeitems,
   } = action;
   switch (type) {
-    case 'appstate/updateAuthorization': {
-      return {
-        ...state,
-        authorization,
-      };
-    }
     case 'appstate/updateStoreItems': {
       return {
         ...state,
         storeitems,
       };
     }
-    case 'appstate/updateUserShoppingCart': {
-      return {
-        ...state,
-        bookcart: [...state.shopcart, cartitem],
-      };
-    }
-    case 'appstate/updateUserBookingCart': {
-      return {
-        ...state,
-        status: [...state.bookcart, cartitem],
-      };
-    }
-    case 'appstate/deleteStoreItemFromUserShoppingCart': {
-      return {
-        ...state,
-        shopcart: [...state.shopcart.slice(0, cartitem - 1), ...state.shopcart.slice(cartitem)],
-      };
-    }
-    case 'appstate/deleteStoreItemFromUserBookingCart': {
-      return {
-        ...state,
-        bookcart: [...state.bookcart.slice(0, cartitem - 1), ...state.bookcart.slice(cartitem)],
-      };
-    }
     case ('persist/REHYDRATE'): {
       const {
-        payload: { appstate: rehydrate, appstate: { LoadedAt } } =
-        { appstate: { LoadedAt: new Date().toISOString() } },
+        payload: { appstate: rehydrate } = { appstate: {} },
       } = action;
-      const expireDate = new Date(LoadedAt);
-      const isExpired = expireDate.setSeconds(expireDate.getSeconds() + ExpireTime) < new Date();
       const rehydrateorstate = (Object.keys(rehydrate).length > 1 ? rehydrate : state);
-      return { ...(isExpired ? state : rehydrateorstate) };
+      return { ...(rehydrateorstate) };
     }
     default:
       return state;

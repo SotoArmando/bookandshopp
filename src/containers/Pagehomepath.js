@@ -23,6 +23,7 @@ function Pagehomepath({
         history.push(`/preview/${id}`);
         break;
       case 'Add to Cart':
+        console.log('added to cart', id);
         addStoreitemToShopcart(id);
         upstreamUser(sessionid, { ...activesession, bookcart, shopcart: [...shopcart, id] });
         break;
@@ -84,14 +85,14 @@ Pagehomepath.propTypes = {
 
 const mapStatetoProps = (
   {
-    appstate: { bookcart, shopcart },
     session: { activesession },
+    session: { activesession: { bookcart, shopcart } },
   },
 ) => ({ bookcart, shopcart, activesession });
 
 const mapDispatchtoProps = (dispatch) => ({
-  addStoreitemToShopcart: (id) => dispatch({ type: 'appstate/updateUserShoppingCart', cartitem: id }),
-  addStoreitemToBookcart: (id) => dispatch({ type: 'appstate/updateUserBookingCart', cartitem: id }),
+  addStoreitemToShopcart: (id) => dispatch({ type: 'sessions/updateUserShoppingCart', cartitem: id }),
+  addStoreitemToBookcart: (id) => dispatch({ type: 'sessions/updateUserBookingCart', cartitem: id }),
   syncronizeStoreItems: (storeitems) => dispatch({ type: 'appstate/updateStoreItems', storeitems }),
 });
 

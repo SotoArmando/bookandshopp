@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { dbkeys, fetcher } from '../fetch';
 
 export default function Rowitemcartdisplay({
+  i,
   id,
   handleClick,
   marginh,
   marginv,
 }) {
-  
   // Enables the use Is not an number to check id passed to the rowitemcartdisplay
   // eslint-disable-next-line no-restricted-globals
   if (isNaN(id)) { throw Error('Rowitemcartdisplay: Is not an number id'); }
@@ -21,9 +21,8 @@ export default function Rowitemcartdisplay({
     pictureid,
   } = state;
   useEffect(() => {
-    fetcher(`${url1}/${id}`, ({item,picture: {pictureid}}) => {
-      debugger;
-      setState({...item,pictureid});
+    fetcher(`${url1}/${id}`, ({ item, picture: { pictureid } }) => {
+      setState({ ...item, pictureid });
     }).fetch();
   }, []);
 
@@ -44,7 +43,7 @@ export default function Rowitemcartdisplay({
           {year}
         </div>
       </div>
-      <button type="button" data-testid="Rowitemcartdisplay_removebtn" className="corebox_2 row items_center  center f_0 btn_u maxedcorebox_x5" onClick={() => handleClick(id)}>
+      <button type="button" data-testid="Rowitemcartdisplay_removebtn" className="corebox_2 row items_center  center f_0 btn_u maxedcorebox_x5" onClick={() => handleClick(i)}>
         Remove
       </button>
     </div>
@@ -52,6 +51,7 @@ export default function Rowitemcartdisplay({
 }
 
 Rowitemcartdisplay.propTypes = {
+  i: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
   handleClick: PropTypes.func.isRequired,
   marginh: PropTypes.number.isRequired,

@@ -31,6 +31,7 @@ export default function Wrappedrowlist({
             marginh={marginh}
             marginv={marginv}
             flexgrow={1}
+            i={i}
             id={isArrayofObjects ? undefined : e}
             // #eslint-disable-next-line react/jsx-props-no-spreading
             // In order to spread dynamicly objects it is needed to

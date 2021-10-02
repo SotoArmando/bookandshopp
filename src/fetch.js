@@ -1,5 +1,6 @@
 import rapidapi from './env';
-const Serverdomain = "http://127.0.0.1:3000/";
+
+const Serverdomain = 'http://127.0.0.1:3000/';
 // const Serverdomain = 'https://bookandshoprails.herokuapp.com/';
 
 const Serverdomainurls = {

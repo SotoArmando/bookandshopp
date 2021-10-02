@@ -6,20 +6,23 @@ import Cellcart from './Cellcart';
 import Colummenu from '../components/Columnmenu';
 
 function Rowmenu({
-  bookcart, shopcart, RemoveStoreitemfromShopcart, RemoveStoreitemfromBookcart,
-  RemovepreviousSession, activesession, active, upstreamUser,
+  RemoveStoreitemfromShopcart, RemoveStoreitemfromBookcart,
+  RemovepreviousSession,
+  activesession: { bookcart, shopcart, id: activesessionid }, active, upstreamUser,
 }) {
+  console.log('bookcart', bookcart);
+  console.log('shopcart', shopcart);
   const history = useHistory();
 
   const handleCartClick = useCallback((operation, id) => {
     switch (operation) {
       case 'Remove from shopcart':
         RemoveStoreitemfromShopcart(id);
-        upstreamUser(activesession.id, { shopcart: shopcart.filter((e) => e !== id) });
+        upstreamUser(activesessionid, { shopcart: shopcart.filter((e) => e !== id) });
         break;
       case 'Remove from bookcart':
         RemoveStoreitemfromBookcart(id);
-        upstreamUser(activesession.id, { bookcart: bookcart.filter((e) => e !== id) });
+        upstreamUser(activesessionid, { bookcart: bookcart.filter((e) => e !== id) });
         break;
       default:
         break;
@@ -64,8 +67,6 @@ function Rowmenu({
 }
 
 Rowmenu.propTypes = {
-  bookcart: PropTypes.arrayOf(PropTypes.number).isRequired,
-  shopcart: PropTypes.arrayOf(PropTypes.number).isRequired,
   RemoveStoreitemfromShopcart: PropTypes.func.isRequired,
   RemoveStoreitemfromBookcart: PropTypes.func.isRequired,
   RemovepreviousSession: PropTypes.func.isRequired,
@@ -90,15 +91,14 @@ Rowmenu.defaultProps = {
 
 const mapStatetoProps = (
   {
-    appstate: { bookcart, shopcart },
     session: { activesession, active },
   },
 ) => ({
-  bookcart, shopcart, activesession, active,
+  activesession, active,
 });
 const mapDispatchtoProps = (dispatch) => ({
-  RemoveStoreitemfromShopcart: (cartitem) => dispatch({ type: 'appstate/deleteStoreItemFromUserShoppingCart', cartitem }),
-  RemoveStoreitemfromBookcart: (cartitem) => dispatch({ type: 'appstate/deleteStoreItemFromUserBookingCart', cartitem }),
+  RemoveStoreitemfromShopcart: (cartitem) => dispatch({ type: 'sessions/deleteStoreItemFromUserShoppingCart', cartitem }),
+  RemoveStoreitemfromBookcart: (cartitem) => dispatch({ type: 'sessions/deleteStoreItemFromUserBookingCart', cartitem }),
   RemovepreviousSession: () => dispatch({ type: 'sessions/Logout' }),
 });
 
