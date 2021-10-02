@@ -11,7 +11,12 @@ function Pagesignsession({
 }) {
   const [sign, setSign] = useState(false);
   const [errors, setErrors] = useState([]);
-  const [formstate, setState] = useState({});
+  const [formstate, setState] = useState({
+    user: '',
+    password: '',
+    confirm_password: '',
+    nick: '',
+  });
   const history = useHistory();
 
   function handleChange(event) {
@@ -22,7 +27,10 @@ function Pagesignsession({
     user, id, token, bookcart, shopcart, exp,
   }) {
     syncroniseUserSession({
-      user, id, bookcart, shopcart,
+      user,
+      id,
+      bookcart: bookcart.map((e) => parseInt(e, 10)),
+      shopcart: shopcart.map((e) => parseInt(e, 10)),
     }, token);
     setAppstate({ ...appdata, authorization: token, expiration: exp });
     history.push('/');
@@ -118,20 +126,26 @@ function Pagesignsession({
 Pagesignsession.propTypes = {
   syncroniseUserSession: PropTypes.func.isRequired,
   setAppstate: PropTypes.func.isRequired,
-  appdata: PropTypes.arrayOf(PropTypes.shape({
-    item: PropTypes.shape({
-      make: PropTypes.string,
-      model: PropTypes.string,
-      year: PropTypes.number,
-      id: PropTypes.number,
-    }),
-    picture: PropTypes.shape({
-      pictureid: PropTypes.string,
-    }),
-  })).isRequired,
+  appdata: PropTypes.shape({
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        item: PropTypes.shape({
+          make: PropTypes.string,
+          model: PropTypes.string,
+          year: PropTypes.number,
+          id: PropTypes.number,
+        }),
+        picture: PropTypes.shape({
+          pictureid: PropTypes.string,
+        }),
+      }),
+    ),
+  }).isRequired,
 };
 
-const mapStatetoProps = ({ appstate: { bookcart, shopcart } }) => ({ bookcart, shopcart });
+const mapStatetoProps = ({
+  appstate: { bookcart, shopcart },
+}) => ({ bookcart, shopcart });
 const mapDispatchtoProps = (dispatch) => ({
   syncroniseUserSession: (user, authorization) => dispatch({ type: 'sessions/Login', user, authorization }),
 });

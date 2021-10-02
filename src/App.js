@@ -20,7 +20,7 @@ function App() {
   };
 
   const [appstate, setAppstate] = useState({
-    authorization: undefined,
+    authorization: '',
     data: [],
     init: true,
   });

@@ -6,7 +6,8 @@ import Cellitemdisplay from '../components/Cellitemdisplay';
 import Wrappedrowlist from '../components/Wrappedrowlist';
 
 function Pagehomepath({
-  appdata: { data }, addStoreitemToShopcart, addStoreitemToBookcart, syncronizeStoreItems,
+  setAppstate, appdata, appdata: { data }, addStoreitemToShopcart, addStoreitemToBookcart,
+  syncronizeStoreItems, authorization,
   shopcart, bookcart, upstreamUser, activesession,
 }) {
   const history = useHistory();
@@ -39,6 +40,7 @@ function Pagehomepath({
     if (data.length > 0) {
       syncronizeStoreItems(data);
     }
+    setAppstate({ ...appdata, authorization });
   }, [data]);
 
   return (
@@ -63,6 +65,8 @@ Pagehomepath.propTypes = {
   syncronizeStoreItems: PropTypes.func.isRequired,
   bookcart: PropTypes.arrayOf(PropTypes.number).isRequired,
   shopcart: PropTypes.arrayOf(PropTypes.number).isRequired,
+  authorization: PropTypes.string.isRequired,
+  setAppstate: PropTypes.func.isRequired,
   appdata: PropTypes.shape({
     data: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
@@ -84,10 +88,12 @@ Pagehomepath.propTypes = {
 
 const mapStatetoProps = (
   {
-    session: { activesession },
+    session: { activesession, authorization },
     session: { activesession: { bookcart, shopcart } },
   },
-) => ({ bookcart, shopcart, activesession });
+) => ({
+  bookcart, shopcart, activesession, authorization,
+});
 
 const mapDispatchtoProps = (dispatch) => ({
   addStoreitemToShopcart: (id) => dispatch({ type: 'sessions/updateUserShoppingCart', cartitem: id }),

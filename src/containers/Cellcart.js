@@ -83,12 +83,14 @@ function Cellcart({ handleClick, bookcart, shopcart }) {
 
 Cellcart.propTypes = {
   handleClick: PropTypes.func,
-  bookcart: PropTypes.arrayOf(PropTypes.number).isRequired,
-  shopcart: PropTypes.arrayOf(PropTypes.number).isRequired,
+  bookcart: PropTypes.arrayOf(PropTypes.number),
+  shopcart: PropTypes.arrayOf(PropTypes.number),
 };
 
 Cellcart.defaultProps = {
   handleClick: () => 0,
+  bookcart: [],
+  shopcart: [],
 };
 
 export default Cellcart;

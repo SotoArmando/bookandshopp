@@ -16,11 +16,15 @@ function Rowmenu({
     switch (operation) {
       case 'Remove from shopcart':
         RemoveStoreitemfromShopcart(id);
-        upstreamUser(activesessionid, { shopcart: shopcart.filter((e) => e !== id) });
+        upstreamUser(activesessionid, {
+          shopcart: [...shopcart.slice(0, id), ...shopcart.slice(id + 1)],
+        });
         break;
       case 'Remove from bookcart':
         RemoveStoreitemfromBookcart(id);
-        upstreamUser(activesessionid, { bookcart: bookcart.filter((e) => e !== id) });
+        upstreamUser(activesessionid, {
+          bookcart: [...bookcart.slice(0, id), ...bookcart.slice(id + 1)],
+        });
         break;
       default:
         break;

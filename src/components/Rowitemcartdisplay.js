@@ -31,7 +31,7 @@ export default function Rowitemcartdisplay({
       <div
         className="corebox_4 corebox_x4  cover"
         style={{
-          backgroundImage: `url(${url0(pictureid)})`,
+          backgroundImage: `${pictureid === 0 ? '' : `url(${url0(pictureid)})`}`,
         }}
       />
       <div className="col pad_20 corebox_4">
