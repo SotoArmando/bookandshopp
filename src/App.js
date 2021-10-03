@@ -6,8 +6,8 @@ import Pagehomepath from './containers/Pagehomepath';
 import { dbkeys, fetcher } from './fetch';
 import Pagesignsession from './containers/Pagesignsession';
 import Pageitempreview from './containers/Pageitempreview';
-import './res/fonts/Inter/stylesheet.scss';
-import './res/fonts/Opensans/stylesheet.scss';
+// import './res/fonts/Inter/stylesheet.scss';
+// import './res/fonts/Opensans/stylesheet.scss';
 import sessionProvider from './res/sessionprovider';
 
 function App() {

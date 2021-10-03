@@ -12,6 +12,12 @@ export default function Colummenu() {
     Shop: '/shop',
     Testdrive: '/book',
   });
+
+  const handleItemClick = (path) => {
+    history.push(path);
+    setActive(false);
+  };
+
   return [
     <div key="Colummenu0" className=" row  space_between ">{menubtn}</div>,
     <div key="Colummenu1" className={`mobilehide col nav_col_0 bodyheight ${active ? 'active' : ''} p corebox_x14 back_2 border_r3 `}>
@@ -41,8 +47,8 @@ export default function Colummenu() {
       <div className="corebox_11 col center items_start pad_l30 ">
         {
         paths.map(([k, v]) => (
-          <label key={`Columnmenu${k}`} aria-hidden="true" htmlFor={`m${k}`} for={`m${k}`} className="corebox_2 row items_center  f500 f_2 btn_u pad_l22" onClick={() => history.push(v)}>
-            <input type="radio" id={`m${k}`} name="Colummenupaths" value={k} className="" />
+          <label key={`Columnmenu${k}`} aria-hidden="true" htmlFor={`m${k}`} for={`m${k}`} className="corebox_2 row items_center  f500 f_2 btn_u pad_l22" onClick={() => handleItemClick(v)}>
+            <input type="radio" id={`m${k}`} name="Colummenupaths" value={k} className="hide" />
             {k}
           </label>
         ))
