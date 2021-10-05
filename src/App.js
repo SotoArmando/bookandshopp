@@ -48,7 +48,7 @@ function App() {
         {Object.entries(paths).map(({ 0: route, 1: View }) => (
           <Route key={route} path={route}>
             <div className="row start items_center gbasis_30 allsize">
-              <div className="maxedcorebox_x3" />
+              <div className="maxedcorebox_x3 mobilehide  " />
               <div className="center">
                 <View appdata={appstate} setAppstate={setAppstate} upstreamUser={upstreamUser} />
               </div>

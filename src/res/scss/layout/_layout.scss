@@ -92,6 +92,15 @@
     border-top-left-radius: 1rem * core($i);
     border-top-right-radius: 1rem * core($i);
   }
+
+  .borderradius_right_#{$i} {
+    border-top-right-radius: 1rem * core($i);
+    border-bottom-right-radius: 1rem * core($i);
+  }
+  .borderradius_left_#{$i} {
+    border-top-left-radius: 1rem * core($i);
+    border-bottom-left-radius: 1rem * core($i);
+  }
 }
 
 @for $i from 0 through 50 {
@@ -433,6 +442,15 @@
       font-size: 1rem * core_font($i);
     }
 
+    .mobilemaxedcorebox_bid#{$i} {
+      min-height: 3.6rem * core($i + 23);
+      max-height: 3.6rem * core($i + 23);
+      width: 100%;
+    }
+    .mobilemaxedcorebox_x#{$i} {
+      min-width: 3.6rem * core($i + 23);
+      max-width: 3.6rem * core($i + 23);
+    }
     .mobilemaxedcorebox_#{$i} {
       min-height: 3.6rem * core($i + 23);
       max-height: 3.6rem * core($i + 23);

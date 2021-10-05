@@ -18,13 +18,13 @@ export default function Wrappedrowlist({
   const isArrayofObjects = list.every((e) => typeof e === 'object');
   const [page, setPage] = useState(0);
   return (
-    <div data-testid={testid} className="wrappedrowcontainer">
+    <div data-testid={testid} className="wrappedrowcontainer allsize center">
       <div
         className={`row half_horizontalmar half_verticalmar mbasis_${
           basis - 1
         } ${g || ''}basis_${basis} nmar_l${marginh} nmar_r${marginh} nmar_t${
           marginvoff || marginv
-        } nmar_b${marginvoff || marginv} ${className || ''}`}
+        } nmar_b${marginvoff || marginv} ${className || ''} center`}
       >
         {paginator(list, pagelimit, page).map((e, i) => (
           <Item
@@ -43,10 +43,35 @@ export default function Wrappedrowlist({
           />
         ))}
       </div>
-      <div className="row center corebox_2 half_horizontalmar half_verticalmar mar_t22">
-        <button type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>Prev</button>
-        <span>{page}</span>
-        <button type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>Next</button>
+      <div className="row mobilehide nopointerevents half_horizontalmar half_verticalmar mar_t22 absolute bottom allsize   ">
+        <div className="row start gbasis_20 allsize">
+          <div className="maxedcorebox_x3 mobilehide" />
+          <div className="allsize row space_between items_center">
+            <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_right_30 " type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>
+              Prev
+              {/* {page > 0 ? page - 1 : 0} */}
+            </button>
+            <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_left_30" type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>
+              Next
+              {/* {page} */}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="row desktophide nopointerevents half_horizontalmar half_verticalmar mar_t22 fixed bottom allsize   ">
+        <div className="row start gbasis_20 allsize">
+          <div className="maxedcorebox_x3 mobilehide" />
+          <div className="allsize row space_between items_center">
+            <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_right_30 " type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>
+              Prev
+              {/* {page > 0 ? page - 1 : 0} */}
+            </button>
+            <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_left_30" type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>
+              Next
+              {/* {page} */}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
