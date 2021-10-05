@@ -58,6 +58,7 @@ function Pagehomepath({
         basis={43}
         marginh={35}
         marginv={35}
+        paginate
         g="g"
       />
       <div className="corebox_6" />

@@ -13,6 +13,7 @@ export default function Wrappedrowlist({
   marginvoff,
   paginator,
   pagelimit,
+  paginate,
   g,
 }) {
   const isArrayofObjects = list.every((e) => typeof e === 'object');
@@ -43,36 +44,41 @@ export default function Wrappedrowlist({
           />
         ))}
       </div>
-      <div className="row mobilehide nopointerevents half_horizontalmar half_verticalmar mar_t22 absolute bottom allsize   ">
-        <div className="row start gbasis_20 allsize">
-          <div className="maxedcorebox_x3 mobilehide" />
-          <div className="allsize row space_between items_center">
-            <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_right_30 " type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>
-              Prev
-              {/* {page > 0 ? page - 1 : 0} */}
-            </button>
-            <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_left_30" type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>
-              Next
-              {/* {page} */}
-            </button>
+      {paginate ? (
+        <div className="row mobilehide nopointerevents half_horizontalmar half_verticalmar mar_t22 absolute bottom allsize   ">
+          <div className="row start gbasis_20 allsize">
+            <div className="maxedcorebox_x3 mobilehide" />
+            <div className="allsize row space_between items_center">
+              <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_right_30 " type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>
+                Prev
+                {/* {page > 0 ? page - 1 : 0} */}
+              </button>
+              <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_left_30" type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>
+                Next
+                {/* {page} */}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="row desktophide nopointerevents half_horizontalmar half_verticalmar mar_t22 fixed bottom allsize   ">
-        <div className="row start gbasis_20 allsize">
-          <div className="maxedcorebox_x3 mobilehide" />
-          <div className="allsize row space_between items_center">
-            <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_right_30 " type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>
-              Prev
-              {/* {page > 0 ? page - 1 : 0} */}
-            </button>
-            <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_left_30" type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>
-              Next
-              {/* {page} */}
-            </button>
+      ) : []}
+
+      {paginate ? (
+        <div className="row desktophide nopointerevents half_horizontalmar half_verticalmar mar_t22 fixed fixed_fix_0 bottom allsize   ">
+          <div className="row start gbasis_20 allsize">
+            <div className="allsize row space_between items_center">
+              <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_right_30 " type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>
+                Prev
+                {/* {page > 0 ? page - 1 : 0} */}
+              </button>
+              <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_left_30" type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>
+                Next
+                {/* {page} */}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      ) : []}
+
     </div>
   );
 }
@@ -90,6 +96,7 @@ Wrappedrowlist.propTypes = {
   className: PropTypes.string,
   marginvoff: PropTypes.number,
   g: PropTypes.string,
+  paginate: PropTypes.bool,
 };
 
 Wrappedrowlist.defaultProps = {
@@ -103,6 +110,7 @@ Wrappedrowlist.defaultProps = {
   className: '',
   marginvoff: 0,
   pagelimit: 3,
+  paginate: false,
   g: '',
   paginator: (list, pagelimit, page) => list.slice(pagelimit * page, (page + 1) * pagelimit),
 };
