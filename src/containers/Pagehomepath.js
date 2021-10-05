@@ -54,6 +54,7 @@ function Pagehomepath({
         basis={43}
         marginh={22}
         marginv={22}
+        g="g"
       />
     </div>
   );

@@ -42,17 +42,21 @@ function App() {
   return (
     <div className="App col items_center">
       <Rowmenu upstreamUser={upstreamUser} />
-      <div className="maxedcorebox_x23">
-        <div className="corebox_0" />
-        <Switch>
-          {Object.entries(paths).map(({ 0: route, 1: View }) => (
-            <Route key={route} path={route}>
-              <View appdata={appstate} setAppstate={setAppstate} upstreamUser={upstreamUser} />
-            </Route>
-          ))}
-          <Redirect to="/" />
-        </Switch>
-      </div>
+
+      <div className="corebox_0" />
+      <Switch>
+        {Object.entries(paths).map(({ 0: route, 1: View }) => (
+          <Route key={route} path={route}>
+            <div className="row start items_center gbasis_30 allsize">
+              <div className="maxedcorebox_x3" />
+              <div className="center">
+                <View appdata={appstate} setAppstate={setAppstate} upstreamUser={upstreamUser} />
+              </div>
+            </div>
+          </Route>
+        ))}
+        <Redirect to="/" />
+      </Switch>
     </div>
   );
 }

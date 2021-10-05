@@ -43,7 +43,7 @@ export default function Cellitemdisplay({
   ];
 
   return (
-    <div key={`Cellitemdisplay${id}`} data-testid="Cellitemdisplay" className={`col  back_3 borderradius_14  mar_l${marginh} mar_r${marginh} mar_t${marginv} mar_b${marginv} half_horizontalmar half_verticalmar`}>
+    <div key={`Cellitemdisplay${id}`} data-testid="Cellitemdisplay" className={`col corebox_x12 maxedcorebox_x12 back_3 borderradius_14  mar_l${marginh} mar_r${marginh} mar_t${marginv} mar_b${marginv} half_horizontalmar half_verticalmar`}>
       <div
         className="corebox_11 cover"
         style={{

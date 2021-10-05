@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function Wrappedrowlist({
@@ -11,10 +11,12 @@ export default function Wrappedrowlist({
   testid,
   className,
   marginvoff,
+  paginator,
+  pagelimit,
   g,
 }) {
   const isArrayofObjects = list.every((e) => typeof e === 'object');
-
+  const [page, setPage] = useState(0);
   return (
     <div data-testid={testid} className="wrappedrowcontainer">
       <div
@@ -24,7 +26,7 @@ export default function Wrappedrowlist({
           marginvoff || marginv
         } nmar_b${marginvoff || marginv} ${className || ''}`}
       >
-        {list.map((e, i) => (
+        {paginator(list, pagelimit, page).map((e, i) => (
           <Item
             key={[Item.name || Item.displayName, i].join('')}
             handleClick={handleClick}
@@ -41,6 +43,11 @@ export default function Wrappedrowlist({
           />
         ))}
       </div>
+      <div className="row center corebox_2 half_horizontalmar half_verticalmar mar_t22">
+        <button type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>Prev</button>
+        <span>{page}</span>
+        <button type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>Next</button>
+      </div>
     </div>
   );
 }
@@ -50,7 +57,9 @@ Wrappedrowlist.propTypes = {
   list: PropTypes.arrayOf(PropTypes.any),
   handleClick: PropTypes.func,
   basis: PropTypes.number,
+  paginator: PropTypes.func,
   marginh: PropTypes.number,
+  pagelimit: PropTypes.number,
   marginv: PropTypes.number,
   testid: PropTypes.string,
   className: PropTypes.string,
@@ -68,5 +77,7 @@ Wrappedrowlist.defaultProps = {
   list: [],
   className: '',
   marginvoff: 0,
+  pagelimit: 3,
   g: '',
+  paginator: (list, pagelimit, page) => list.slice(pagelimit * page, (page + 1) * pagelimit),
 };
