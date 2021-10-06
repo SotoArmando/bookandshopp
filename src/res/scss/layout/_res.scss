@@ -8,11 +8,13 @@ $borders: ("0", rgb(173, 183, 255), 1px),
   ("7", #6f6f73, 1rem * core(12)), ("8", #b8b7b7, 1px),
   ("9", #fff, 1rem * core(22));
 
-$icons: ("", ""), ("", "");
+$icons: ("twitter", "../../svg/013-twitter-1.svg"), 
+("facebook", "../../svg/043-facebook-1.svg"),
+("instagram", "../../svg/034-instagram.svg"), ;
 
 $back-colors: ("granny-smith-apple", #bbdb9bff),
   ("raisin-black", #202030ff),
-  ("tart-orange", #fb4d3dff),
+  ("tart-orange", #fb4d3dff), 
   ("pictorial-carmine", #ca1551ff),
   ("rhythm", #7e7f9aff), ("na", #000),
   ("green_a1", #0bbdad), ("0", #f9f9f9),
@@ -77,7 +79,7 @@ $back-colors: ("granny-smith-apple", #bbdb9bff),
   ("mask_pink", #e490b7), ("green", rgb(69, 208, 156)),
   ("red", rgb(248, 64, 43)),
   ("9", #f6fafd),
-  ("grad_9", linear-gradient(45deg, rgb(225, 240, 240), #eafafa)),
+  ("grad_9", linear-gradient(45deg, rgb(225, 240, 240), #eafafa)),  
   (
     "grad_10",
     linear-gradient(180deg, #fffafa 0%, rgba(255, 255, 255, 0) 100%)

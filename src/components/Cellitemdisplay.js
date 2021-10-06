@@ -43,7 +43,7 @@ export default function Cellitemdisplay({
   ];
 
   return (
-    <div key={`Cellitemdisplay${id}`} data-testid="Cellitemdisplay" className={`col corebox_x12 maxedcorebox_x12 mobilemaxedcorebox_x13 back_3 borderradius_14  mar_l${marginh} mar_r${marginh} mar_t${marginv} mar_b${marginv} half_horizontalmar half_verticalmar`}>
+    <div key={`Cellitemdisplay${id}`} data-testid="Cellitemdisplay" className={`col corebox_x14 maxedcorebox_x14 mobilemaxedcorebox_x13  borderradius_14  mar_l${marginh} mar_r${marginh} mar_t${marginv} mar_b${marginv} half_horizontalmar half_verticalmar`}>
       <div className="center">
         <div
           className="corebox_10 mobilecorebox_12 maxedcorebox_x10 mobilemaxedcorebox_x12 cover borderradius_40"
@@ -53,16 +53,24 @@ export default function Cellitemdisplay({
         />
       </div>
       <div className="col pad_20 tcenter f_0 ls_29 f600">
-        <div>
+        <div className="center corebox_2 ">
           {year}
           {' '}
           {model}
         </div>
       </div>
-      <div className="back_19 pad_t22" />
-      <div className="tcenter corebox_5 items_center center pad_l22 pad_r22 pad_b21 borderbox">
-        This is somewhat the best byke if you ask me
+      <div className=" border_bdashed4" />
+      <div className="tcenter corebox_5 items_center center pad_l23 pad_r23 pad_b21 borderbox fore_17 ls_22">
+        The VESPA C20 is a stunning moped with a modern electronic system and more
       </div>
+      <div className="row center">
+        {['facebook', 'twitter', 'instagram'].map((e) => (
+          <span key={e} className="corebox_3 maxedcorebox_x3 center border_4 borderradius_22 half_horizontalmar mar_l25 mar_r25">
+            <span className={`maskicon_${e} back_black_o3 iconsize_20 maxedcorebox_x3 `} />
+          </span>
+        ))}
+      </div>
+      <div className="corebox_0" />
       {modes[mode]}
       <button type="button" className="corebox_1 row items_center corebox_x8 center f_0 btn_u" data-testid="Cellitemdisplay_previewtbtn" onClick={() => handleClick('Preview', payload)}>Preview</button>
     </div>

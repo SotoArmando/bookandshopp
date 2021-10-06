@@ -268,7 +268,7 @@
 
 @each $icon in $icons {
   &.svgicon_#{nth($icon,1)} {
-    background-image: nth($icon, 2);
+    background-image: url(nth($icon, 2));
     min-width: 1rem * core_font(3);
     min-height: 1rem * core_font(3);
     background-size: auto 1rem * core_font(3);
@@ -288,7 +288,7 @@
 
 @each $icon in $icons {
   &.maskicon_#{nth($icon,1)} {
-    mask-image: nth($icon, 2);
+    mask-image: url(nth($icon, 2));
     min-width: 1rem * core_font(3);
     min-height: 1rem * core_font(3);
     mask-size: 1rem * core_font(3) auto;
@@ -356,6 +356,10 @@
 
   &.border_b#{nth($border,1)} {
     border-bottom: nth($border, 3) solid nth($border, 2);
+  }
+
+  &.border_bdashed#{nth($border,1)} {
+    border-bottom: nth($border, 3) dashed nth($border, 2);
   }
 
   &.border_l#{nth($border,1)} {
