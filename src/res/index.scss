@@ -9,9 +9,16 @@
   'scss/layout/layout',
   'scss/helpers/helpers';
 // 2. Base stuff
-
+@import 
+  'scss/base/Inter/stylesheet',
+  'scss/base/Opensans/stylesheet';
 // 4. Components [input,button,forms,tables,divs]
-
+.ffam_inter {
+  font-family: "Inter";
+}
+.ffam_opensans {
+  font-family: "Open Sans";
+}
 // 5. Page-specific styles [Page scoped files]
 
 @media (orientation: portrait), (max-width: 1000px) {

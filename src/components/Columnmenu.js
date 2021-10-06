@@ -30,8 +30,8 @@ export default function Colummenu() {
             paths.map(([k, v]) => (
               [
                 <input key={`Columenupaths${k}`} type="radio" id={k} name="Colummenupaths" value={k} className="" />,
-                <label key={`Columnmenu${k}`} aria-hidden="true" htmlFor={k} for={k} className="corebox_2 row items_center  f500 f_2 btn_u pad_l22" onClick={() => history.push(v)}>
-                  {k}
+                <label key={`Columnmenu${k}`} aria-hidden="true" htmlFor={k} for={k} className="corebox_3 ffam_inter  row items_center ls_25 f700 f_3 btn_u pad_l22" onClick={() => history.push(v)}>
+                  {k.toUpperCase()}
                 </label>,
               ]
             ))
@@ -47,7 +47,7 @@ export default function Colummenu() {
       <div className="corebox_11 col center items_start pad_l30 ">
         {
         paths.map(([k, v]) => (
-          <label key={`Columnmenu${k}`} aria-hidden="true" htmlFor={`m${k}`} for={`m${k}`} className="corebox_2 row items_center  f500 f_2 btn_u pad_l22" onClick={() => handleItemClick(v)}>
+          <label key={`Columnmenu${k}`} aria-hidden="true" htmlFor={`m${k}`} for={`m${k}`} className="corebox_2  row items_center  f500 f_2 btn_u pad_l22" onClick={() => handleItemClick(v)}>
             <input type="radio" id={`m${k}`} name="Colummenupaths" value={k} className="hide" />
             {k}
           </label>

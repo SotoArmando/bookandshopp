@@ -47,8 +47,8 @@ function Pagehomepath({
     [children,
       <div className=" col center" key="pagehomepathroot">
         <div className="corebox_10 center col">
-          <span className="f_4 f700 corebox_3 center row">LATEST MODELS</span>
-          <span className="f_0 corebox_1 center row mar_b22">Please select a vespa model</span>
+          <span className="f_4 f700 corebox_3 center row ffam_inter">LATEST MODELS</span>
+          <span className="f_0 corebox_1 center row mar_b22 ffam_opensans">Please select a vespa model</span>
         </div>
         <Wrappedrowlist
           testid="Pagehomepathwrappedrowlist"
