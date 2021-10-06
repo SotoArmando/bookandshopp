@@ -8,7 +8,7 @@ function Pageitempreview({ children }) {
   // Enables the use Is not an number to check id passed to the view both using routes or methods
   // eslint-disable-next-line no-restricted-globals
   if (isNaN(id)) { throw new Error('Pageitempreview: id is not an number'); }
-  const [state, setState] = useState({ model: 0, year: 0, pictureid: 0 });
+  const [state, setState] = useState({ });
   const {
     pictureid,
   } = state;
@@ -22,7 +22,7 @@ function Pageitempreview({ children }) {
     <div key="Pageitempreview0" data-testid="Pageitempreview" className="col center allsize bodyheight">
       {children}
       <span
-        className="allsize corebox_15 corebox_x16 mobilecorebox_13 contain norepeat"
+        className="allsize corebox_16 corebox_x18 mobilecorebox_13 contain norepeat"
         style={{
           backgroundImage: `url(${url0(pictureid)})`,
         }}

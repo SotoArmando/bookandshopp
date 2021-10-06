@@ -11,6 +11,7 @@ export default function Cellitemdisplay({
     model,
     year,
     id,
+    description,
   },
   picture: {
     pictureid,
@@ -46,7 +47,7 @@ export default function Cellitemdisplay({
     <div key={`Cellitemdisplay${id}`} data-testid="Cellitemdisplay" className={`col ffam_opensans corebox_x14 maxedcorebox_x14 mobilemaxedcorebox_x13  borderradius_14  mar_l${marginh} mar_r${marginh} mar_t${marginv} mar_b${marginv} half_horizontalmar half_verticalmar`}>
       <div className="center">
         <div
-          className="corebox_10 mobilecorebox_12 maxedcorebox_x10 mobilemaxedcorebox_x12 cover borderradius_40"
+          className="corebox_10 mobilecorebox_12  mobilemaxedcorebox_x14 cover"
           style={{
             backgroundImage: `url(${url0(pictureid)})`,
           }}
@@ -60,8 +61,8 @@ export default function Cellitemdisplay({
         </div>
       </div>
       <div className=" border_bdashed4" />
-      <div className="tcenter corebox_7 items_center center pad_l23 pad_r23 pad_b21 borderbox fore_17 ls_22 ">
-        The VESPA C20 is a stunning moped with a modern electronic system and more
+      <div className="tcenter corebox_8 items_center center pad_l23 pad_r23 pad_b21 borderbox fore_17 ls_22 ">
+        { description }
       </div>
       <div className="row center">
         {['facebook', 'twitter', 'instagram'].map((e) => (
@@ -84,6 +85,7 @@ Cellitemdisplay.propTypes = {
   item: PropTypes.shape({
     make: PropTypes.string.isRequired,
     model: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,

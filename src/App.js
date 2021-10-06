@@ -47,7 +47,7 @@ function App() {
         {Object.entries(paths).map(({ 0: route, 1: View }) => (
           <Route key={route} path={route}>
             <div
-              className="row start items_start gbasis_30 allsize bodyheight"
+              className="row start items_start gbasis_30 allsize bodyheight back_2"
             >
               <div className="maxedcorebox_x3 mobilehide  " />
               <div className="col bodyheight">

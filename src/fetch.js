@@ -1,12 +1,12 @@
 import rapidapi from './env';
 
-// const Serverdomain = 'http://127.0.0.1:3000/';
-const Serverdomain = 'https://bookandshoprails.herokuapp.com/';
+const Serverdomain = 'http://127.0.0.1:3000/';
+// const Serverdomain = 'https://bookandshoprails.herokuapp.com/';
 
 const Serverdomainurls = {
   'Return all items in db': `${Serverdomain}items`,
   'Return all users in db': `${Serverdomain}users`,
-  'Return item picture using id': (id) => `${Serverdomain}res/${id}.jpeg`,
+  'Return item picture using id': (id) => `${Serverdomain}res/${id}.png`,
   users_crud: `${Serverdomain}users`,
   items_crud: `${Serverdomain}items`,
   sessions_crud: `${Serverdomain}sessions`,
