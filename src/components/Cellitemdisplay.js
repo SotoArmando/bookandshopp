@@ -47,7 +47,7 @@ export default function Cellitemdisplay({
     <div key={`Cellitemdisplay${id}`} data-testid="Cellitemdisplay" className={`col ffam_opensans corebox_x14 maxedcorebox_x14 mobilemaxedcorebox_x13  borderradius_14  mar_l${marginh} mar_r${marginh} mar_t${marginv} mar_b${marginv} half_horizontalmar half_verticalmar`}>
       <div className="center">
         <div
-          className="corebox_10 mobilecorebox_12  mobilemaxedcorebox_x14 cover"
+          className="corebox_12 mobilecorebox_12  mobilemaxedcorebox_x14 cover"
           style={{
             backgroundImage: `url(${url0(pictureid)})`,
           }}
