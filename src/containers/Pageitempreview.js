@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import PropTypes from 'prop-types';
 import { dbkeys, fetcher } from '../fetch';
 
-function Pageitempreview() {
+function Pageitempreview({ children }) {
   const { id } = useParams();
   // Enables the use Is not an number to check id passed to the view both using routes or methods
   // eslint-disable-next-line no-restricted-globals
@@ -18,9 +19,10 @@ function Pageitempreview() {
     }).fetch();
   }, []);
   return [
-    <div key="Pageitempreview0" data-testid="Pageitempreview" className="col center ">
+    <div key="Pageitempreview0" data-testid="Pageitempreview" className="col center allsize bodyheight">
+      {children}
       <span
-        className="allsize corebox_15 mobilecorebox_13 contain norepeat"
+        className="allsize corebox_15 corebox_x16 mobilecorebox_13 contain norepeat"
         style={{
           backgroundImage: `url(${url0(pictureid)})`,
         }}
@@ -106,5 +108,10 @@ function Pageitempreview() {
       </div>
     </div>];
 }
+
+Pageitempreview.propTypes = {
+
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+};
 
 export default Pageitempreview;

@@ -48,8 +48,7 @@ function Rowmenu({
     [`${active ? 'Sign out' : 'Sign'}`]: '/sign',
   });
 
-  return [
-    <div key="Rowmenu0" className="corebox_2" />,
+  return (
     <div key="Rowmenu1" className="nav corebox_2 row space_between items_center back_2 border_b3 ">
       <div>
         <Colummenu />
@@ -64,8 +63,8 @@ function Rowmenu({
             <label role="button" key={`Rowmenupathlabel${k}`} htmlFor={k} className="corebox_2 row items_center corebox_x5 center f_0 btn_u" onKeyDown={() => handleRowmenuClick(v)} onClick={() => handleRowmenuClick(k, v)}>{k}</label>])
         }
       </div>
-    </div>,
-  ];
+    </div>
+  );
 }
 
 Rowmenu.propTypes = {

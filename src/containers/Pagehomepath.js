@@ -8,7 +8,7 @@ import Wrappedrowlist from '../components/Wrappedrowlist';
 function Pagehomepath({
   setAppstate, appdata, appdata: { data }, addStoreitemToShopcart, addStoreitemToBookcart,
   syncronizeStoreItems, authorization,
-  shopcart, bookcart, upstreamUser, activesession,
+  shopcart, bookcart, upstreamUser, activesession, children,
 }) {
   const history = useHistory();
 
@@ -44,25 +44,26 @@ function Pagehomepath({
   }, [data]);
 
   return (
-    <div className=" col center">
-      <div className="corebox_10 center col">
-        <span className="f_4 f700 corebox_3 center row">LATEST MODELS</span>
-        <span className="f_0 corebox_1 center row mar_b22">Please select a vespa model</span>
-      </div>
-      <Wrappedrowlist
-        testid="Pagehomepathwrappedrowlist"
-        className="center"
-        handleClick={handleItemsClick}
-        item={Cellitemdisplay}
-        list={data}
-        basis={43}
-        marginh={35}
-        marginv={35}
-        paginate
-        g="g"
-      />
-      <div className="corebox_6" />
-    </div>
+    [children,
+      <div className=" col center" key="pagehomepathroot">
+        <div className="corebox_10 center col">
+          <span className="f_4 f700 corebox_3 center row">LATEST MODELS</span>
+          <span className="f_0 corebox_1 center row mar_b22">Please select a vespa model</span>
+        </div>
+        <Wrappedrowlist
+          testid="Pagehomepathwrappedrowlist"
+          className="center"
+          handleClick={handleItemsClick}
+          item={Cellitemdisplay}
+          list={data}
+          basis={43}
+          marginh={35}
+          marginv={35}
+          paginate
+          g="g"
+        />
+        <div className="corebox_6" />
+      </div>]
   );
 }
 
@@ -91,6 +92,7 @@ Pagehomepath.propTypes = {
     shopcart: PropTypes.arrayOf(PropTypes.number),
   }).isRequired,
   upstreamUser: PropTypes.func.isRequired,
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
 const mapStatetoProps = (

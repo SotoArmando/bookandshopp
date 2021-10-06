@@ -40,17 +40,20 @@ function App() {
   };
 
   return (
-    <div className="App col items_center">
+    <div className="App col items_center bodyheight">
       <Rowmenu upstreamUser={upstreamUser} />
 
-      <div className="corebox_0" />
       <Switch>
         {Object.entries(paths).map(({ 0: route, 1: View }) => (
           <Route key={route} path={route}>
-            <div className="row start items_center gbasis_30 allsize">
+            <div
+              className="row start items_start gbasis_30 allsize bodyheight"
+            >
               <div className="maxedcorebox_x3 mobilehide  " />
-              <div className="center">
-                <View appdata={appstate} setAppstate={setAppstate} upstreamUser={upstreamUser} />
+              <div className="col bodyheight">
+                <View appdata={appstate} setAppstate={setAppstate} upstreamUser={upstreamUser}>
+                  <div className="corebox_2" />
+                </View>
               </div>
             </div>
           </Route>
