@@ -47,14 +47,13 @@ export default function Wrappedrowlist({
       {paginate ? (
         <div className="row mobilehide nopointerevents half_horizontalmar half_verticalmar mar_t22 absolute bottom allsize   ">
           <div className="row start gbasis_20 allsize">
-            <div className="maxedcorebox_x3 mobilehide" />
             <div className="allsize row space_between items_center">
-              <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_right_30 " type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>
-                Prev
+              <button className="row items_center allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green_o0 fore_9 borderradius_right_30 " type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>
+                <span className="maskicon_prev back_2 contain iconsize_22" />
                 {/* {page > 0 ? page - 1 : 0} */}
               </button>
-              <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_left_30" type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>
-                Next
+              <button className="row items_center  allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green_o0 fore_9 borderradius_left_30" type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>
+                <span className="maskicon_next back_2 contain iconsize_22" />
                 {/* {page} */}
               </button>
             </div>
@@ -66,12 +65,12 @@ export default function Wrappedrowlist({
         <div className="row desktophide nopointerevents half_horizontalmar half_verticalmar mar_t22 fixed fixed_fix_0 bottom allsize   ">
           <div className="row start gbasis_20 allsize">
             <div className="allsize row space_between items_center">
-              <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_right_30 " type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>
-                Prev
+              <button className="row items_center  allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green_o0 fore_9 borderradius_right_30 " type="button" onClick={() => setPage(page > 0 ? page - 1 : page)}>
+                <span className="maskicon_prev back_2 contain iconsize_22" />
                 {/* {page > 0 ? page - 1 : 0} */}
               </button>
-              <button className="allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green fore_9 borderradius_left_30" type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>
-                Next
+              <button className="row items_center allpointerevents maxedcorebox_4 f_0 f600 ls_29 maxedcorebox_x7 back_green_o0 fore_9 borderradius_left_30" type="button" onClick={() => setPage(list.length >= (pagelimit * (page + 1)) ? page + 1 : page)}>
+                <span className="maskicon_next back_2 contain iconsize_22" />
                 {/* {page} */}
               </button>
             </div>

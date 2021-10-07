@@ -4,6 +4,27 @@
   }
 }
 
+@each $icon in $icons {
+  &.maskicon_#{nth($icon,1)} {
+    mask-image: url(nth($icon, 2));
+    min-width: 1rem * core_font(3);
+    min-height: 1rem * core_font(3);
+    mask-size: auto 1rem * core_font(3);
+    background-color: #383838;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    cursor: pointer;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &.right {
+      background-position: right;
+      mask-position: right;
+    }
+  }
+}
+
 @for $i from 0 through 50 {
   .iconsize_#{$i} {
     min-width: 3.6rem * core($i) !important;
@@ -12,6 +33,26 @@
     background-size: auto 3.6rem * core($i) !important;
     width: 100%;
     height: auto;
+    max-height: 3.6rem * core($i);
+    &.b0 {
+      min-height: auto;
+      max-height: unset;
+      max-width: 3.6rem * core($i);
+      mask-size: 3.6rem * core($i) auto !important;
+      background-size: 3.6rem * core($i) auto !important;
+    }
+
+    &.cover {
+      max-height: unset;
+      background-size: cover !important;
+      mask-size: cover !important;
+    }
+
+    &.contain {
+      max-height: unset;
+      background-size: contain !important;
+      mask-size: contain !important;
+    }
   }
   .backgroundsize_#{$i} {
     background-size: auto 1rem * core_font($i - 27) !important;
@@ -286,26 +327,7 @@
   }
 }
 
-@each $icon in $icons {
-  &.maskicon_#{nth($icon,1)} {
-    mask-image: url(nth($icon, 2));
-    min-width: 1rem * core_font(3);
-    min-height: 1rem * core_font(3);
-    mask-size: 1rem * core_font(3) auto;
-    background-color: #383838;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    cursor: pointer;
-    display: inline-block;
-    background-repeat: no-repeat;
-    background-position: center;
 
-    &.right {
-      background-position: right;
-      mask-position: right;
-    }
-  }
-}
 
 @each $color in $back-colors {
   &.back_#{nth($color,1)} {

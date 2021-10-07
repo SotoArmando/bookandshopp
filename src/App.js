@@ -49,10 +49,10 @@ function App() {
             <div
               className="row start items_start gbasis_30 allsize bodyheight back_2"
             >
-              <div className="maxedcorebox_x3 mobilehide  " />
+              {/* <div className="maxedcorebox_x3 mobilehide  " /> */}
               <div className="col bodyheight">
                 <View appdata={appstate} setAppstate={setAppstate} upstreamUser={upstreamUser}>
-                  <div className="corebox_2" />
+                  <div className="corebox_4" />
                 </View>
               </div>
             </div>

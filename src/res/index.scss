@@ -21,6 +21,8 @@
 }
 // 5. Page-specific styles [Page scoped files]
 
+// 6. MEDIA-specific styles portrait and landscape
+
 @media (orientation: portrait), (max-width: 1000px) {
   $bodywidth: 100vw;
 

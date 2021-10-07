@@ -283,9 +283,9 @@ textarea:focus {
   position: fixed;
   height: 100%;
   left: 0;
-  transform: translateX(-20.07422rem + (1rem * core(27 + 7)));
+  transform: translateX(-100%);
   top: 0;
-  transition: transform 300ms;
+  transition: transform 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
   will-change: transform;
 
   &.active {
@@ -605,7 +605,7 @@ input[type="checkbox"] {
 }
 
 input:checked + .btn_u {
-  background-color: #85be4bff;
+  background-color: #abe077;
   color: white;
 }
 
@@ -631,12 +631,12 @@ input.cart:checked + label + div {
 }
 
 input.cart0:checked {
-  background-color: #85be4bff;
+  background-color: #abe077;
   color: white;
 }
 
 .active_0 {
-  background-color: #85be4bff;
+  background-color: #abe077;
   color: white;
 }
 
@@ -656,6 +656,7 @@ input.cart0:checked {
 .contain {
   background-size: contain;
   background-position: center;
+  -webkit-mask-size: contain;
 }
 
 .fixed_fix_0 {
