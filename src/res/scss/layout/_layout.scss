@@ -354,19 +354,22 @@
 
 @each $pic in $jpg-pic {
   .pic_#{nth($pic,1)} {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.24) -30%, rgba(0, 0, 0, 0) 98.35%), nth($pic, 2), #f7fafc;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.24) -30%, rgba(0, 0, 0, 0) 98.35%), url(nth($pic, 2)), #f7fafc;
     background-repeat: no-repeat;
     background-position: center;
 
     &.transparent {
       background: unset;
-      background-image: nth($pic, 2) !important;
+      background-image: url(nth($pic, 2)) !important;
       background-repeat: no-repeat;
       background-position: center;
     }
 
     &.contain {
       background-size: contain !important;
+    }
+    &.cover {
+      background-size: cover !important;
     }
   }
 }

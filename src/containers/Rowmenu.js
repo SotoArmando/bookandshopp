@@ -9,6 +9,7 @@ function Rowmenu({
   RemoveStoreitemfromShopcart, RemoveStoreitemfromBookcart,
   RemovepreviousSession,
   activesession: { bookcart, shopcart, id: activesessionid }, active, upstreamUser,
+  handleColumnMenuisOpenSwitch,
 }) {
   const history = useHistory();
 
@@ -51,7 +52,7 @@ function Rowmenu({
   return (
     <div key="Rowmenu1" className="nav corebox_2 row space_between items_center back_2 border_b3 ">
       <div>
-        <Colummenu />
+        <Colummenu handleColumnMenuisOpenSwitch={handleColumnMenuisOpenSwitch} />
       </div>
       <div className="row">
         <Cellcart handleClick={handleCartClick} bookcart={bookcart} shopcart={shopcart} />
@@ -79,6 +80,7 @@ Rowmenu.propTypes = {
   }),
   active: PropTypes.bool.isRequired,
   upstreamUser: PropTypes.func.isRequired,
+  handleColumnMenuisOpenSwitch: PropTypes.func.isRequired,
 };
 
 Rowmenu.defaultProps = {

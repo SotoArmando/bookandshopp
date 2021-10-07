@@ -7,7 +7,14 @@ $borders: ("0", rgb(173, 183, 255), 1px),
   ("5", #0bbdad, 1rem * core(17)), ("6", #0bbdad, 1rem * core(20)),
   ("7", #6f6f73, 1rem * core(12)), ("8", #b8b7b7, 1px),
   ("9", #fff, 1rem * core(22));
+  
 
+$jpg-pic: ("lifestylepic_0", "../../png/pagelifestyle/pic_1.jpg"), 
+("lifestylepic_1", "../../png/pagelifestyle/pic_2.jpg"), 
+("lifestylepic_2", "../../png/pagelifestyle/pic_3.jpg"), 
+("lifestylepic_3", "../../png/pagelifestyle/pic_4.jpg"), 
+("lifestylepic_4", "../../png/pagelifestyle/pic_5.jpg"), ; 
+  
 $icons: ("twitter", "../../svg/013-twitter-1.svg"), 
 ("facebook", "../../svg/043-facebook-1.svg"),
 ("instagram", "../../svg/034-instagram.svg"),
@@ -18,6 +25,7 @@ $icons: ("twitter", "../../svg/013-twitter-1.svg"),
 ("menu", "../../png/menu.png"), 
 ("close", "../../png/close.png"), 
 ("vespa", "../../png/vespa.png"), 
+("play", "../../png/play.png"), 
 ;
 
 $back-colors: ("granny-smith-apple", #bbdb9bff),
@@ -37,6 +45,10 @@ $back-colors: ("granny-smith-apple", #bbdb9bff),
   ("black_o3", #b8b7b7),
   ("white_o1", #f5f5f5),
   ("nav_o1", #fffff5),
+  ("lifestyle_0",#99C210),
+  ("lifestyle_1",#FFC600),
+  ("lifestyle_2",#10BBB5),
+  ("lifestyle_3",#252525),
   (
     "nice_white_o0",
     (
@@ -136,4 +148,4 @@ $fore-colors: ("0", #008000),
   ("20", rgb(83, 238, 191)),
   ("21", #969696);
 
-$jpg-pic: ("", ""), ("", "");
+

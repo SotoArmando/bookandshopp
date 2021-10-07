@@ -16,16 +16,15 @@ export default function Wrappedrowlist({
   paginate,
   g,
 }) {
-  const isArrayofObjects = list.every((e) => typeof e === 'object');
   const [page, setPage] = useState(0);
   return (
-    <div data-testid={testid} className="wrappedrowcontainer allsize center">
+    <div data-testid={testid} className={`wrappedrowcontainer allsize center ${className || ''}`}>
       <div
         className={`row half_horizontalmar half_verticalmar mbasis_${
           basis - 1
         } ${g || ''}basis_${basis} nmar_l${marginh} nmar_r${marginh} nmar_t${
           marginvoff || marginv
-        } nmar_b${marginvoff || marginv} ${className || ''} center`}
+        } nmar_b${marginvoff || marginv} center`}
       >
         {paginator(list, pagelimit, page).map((e, i) => (
           <Item
@@ -35,7 +34,7 @@ export default function Wrappedrowlist({
             marginv={marginv}
             flexgrow={1}
             i={i}
-            id={isArrayofObjects ? undefined : e}
+            id={e}
             // #eslint-disable-next-line react/jsx-props-no-spreading
             // In order to spread dynamicly objects it is needed to
             // use spread operator over key-value objects.

@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unknown-property */
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default function Colummenu() {
+export default function Colummenu({ handleColumnMenuisOpenSwitch }) {
   const [active, setActive] = useState(false);
   const menubtn = (
-    <div role="button" aria-hidden="true" onClick={() => setActive(!active)} tabIndex={0} className="corebox_4 corebox_x2 row items_center pad_l22">
+    <div role="button" aria-hidden="true" onClick={() => setActive(handleColumnMenuisOpenSwitch())} tabIndex={0} className="corebox_4 corebox_x3 row items_center pad_l22">
       <span className="maskicon_menu iconsize_21" />
     </div>
   );
@@ -13,14 +14,14 @@ export default function Colummenu() {
 
   const paths = Object.entries({
     Models: '/',
-    Lifestyle: '/',
+    Lifestyle: '/style',
     Shop: '/shop',
     'Test Drive': '/book',
   });
 
   const handleItemClick = (path) => {
     history.push(path);
-    setActive(false);
+    setActive(handleColumnMenuisOpenSwitch(false));
   };
 
   return [
@@ -83,3 +84,8 @@ export default function Colummenu() {
     </div>,
   ];
 }
+
+Colummenu.propTypes = {
+  handleColumnMenuisOpenSwitch: PropTypes.func.isRequired,
+
+};
