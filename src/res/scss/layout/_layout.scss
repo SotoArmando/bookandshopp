@@ -34,6 +34,7 @@
     width: 100%;
     height: auto;
     max-height: 3.6rem * core($i);
+
     &.b0 {
       min-height: auto;
       max-height: unset;
@@ -327,8 +328,6 @@
   }
 }
 
-
-
 @each $color in $back-colors {
   &.back_#{nth($color,1)} {
     background: nth($color, 2);
@@ -368,6 +367,7 @@
     &.contain {
       background-size: contain !important;
     }
+
     &.cover {
       background-size: cover !important;
     }

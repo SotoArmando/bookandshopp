@@ -9,15 +9,20 @@
   'scss/layout/layout',
   'scss/helpers/helpers';
 // 2. Base stuff
-@import 
+@import
   'scss/base/Inter/stylesheet',
   'scss/base/Opensans/stylesheet';
 // 4. Components [input,button,forms,tables,divs]
+
+$--font-family-inter: "Inter",'Times New Roman';
+$--font-family-opensans:  "Open Sans",'Times New Roman';
+
 .ffam_inter {
-  font-family: "Inter";
+  font-family: $--font-family-inter;
 }
+
 .ffam_opensans {
-  font-family: "Open Sans";
+  font-family: $--font-family-opensans;
 }
 // 5. Page-specific styles [Page scoped files]
 
