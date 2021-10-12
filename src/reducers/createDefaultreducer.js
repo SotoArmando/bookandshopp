@@ -39,12 +39,20 @@ function sessionsReducer(state = {
 function userReducer(state = {
   shopcart: [],
   bookcart: [],
+  appointment: [],
 }, action) {
   const {
-    type, cartitem,
+    type, cartitem, appointment: newappointment,
   } = action;
-  const { shopcart, bookcart } = state;
+  const { shopcart, bookcart, appointment } = state;
+
   switch (type) {
+    case 'user/addUserAppointment': {
+      return {
+        ...state,
+        appointment: [...appointment, newappointment],
+      };
+    }
     case 'user/addUserCartItem': {
       return {
         ...state,
@@ -77,6 +85,13 @@ function userReducer(state = {
       return {
         bookcart: [],
         shopcart: [],
+        appointment,
+      };
+    }
+    case 'user/clearAppointments': {
+      return {
+        ...state,
+        appointment: [],
       };
     }
     default:

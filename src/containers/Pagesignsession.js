@@ -9,9 +9,11 @@ function Pagesignsession({
   setAuthorization,
   children,
   clearCarts, addBookeditem, addCartitem,
+  addAppointment,
 }) {
   const [sign, setSign] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [msgs, setMsgs] = useState([]);
   const [formstate, setState] = useState({
     user: '',
     password: '',
@@ -25,7 +27,7 @@ function Pagesignsession({
   }
 
   function handleSuccesfulAuthorization({
-    user, id, token, bookcart, shopcart,
+    user, id, token, bookcart, shopcart, appointment,
   }) {
     syncroniseUserSession({
       user,
@@ -34,6 +36,7 @@ function Pagesignsession({
     clearCarts();
     bookcart.forEach((o) => addBookeditem(o));
     shopcart.forEach((o) => addCartitem(o));
+    appointment.forEach((o) => addAppointment(o));
     setAuthorization(token);
     history.push('/');
   }
@@ -48,7 +51,7 @@ function Pagesignsession({
       case 'Sign up':
         sessionProvider(
           payload,
-          () => { setSign(true); },
+          () => { setSign(false); setMsgs(Object.entries({ user: 'congrats! now you got an user, please just click *Submit to use your credentials' })); },
           handleUnauthorizederrors,
         ).createnewUser();
         break;
@@ -116,6 +119,15 @@ function Pagesignsession({
               ))
               : []
           }
+          {
+            msgs.length > 0
+              ? msgs.map(([k, v]) => (
+                <div key={`msgs${k + v}`} className="corebox_2 fore_green capitalize center">
+                  {`${k} ${v || ''}`}
+                </div>
+              ))
+              : []
+          }
           <div className="row">
             <button type="button" className="corebox_2 center" onClick={() => setSign(true)}>Sign Up</button>
             <button type="button" className="corebox_2 center" onClick={() => setSign(false)}>Sign In</button>
@@ -140,6 +152,7 @@ Pagesignsession.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   clearCarts: PropTypes.func.isRequired,
   addBookeditem: PropTypes.func.isRequired,
+  addAppointment: PropTypes.func.isRequired,
   addCartitem: PropTypes.func.isRequired,
   appdata: PropTypes.shape({
     data: PropTypes.arrayOf(
@@ -163,8 +176,9 @@ const mapStatetoProps = ({
 }) => ({ bookcart, shopcart });
 const mapDispatchtoProps = (dispatch) => ({
   syncroniseUserSession: (user, authorization) => dispatch({ type: 'sessions/Login', user, authorization }),
-  addCartitem: (cartitem) => dispatch({ type: 'user/addUserBookedItem', cartitem }),
-  addBookeditem: (cartitem) => dispatch({ type: 'user/addUserCartItem', cartitem }),
+  addCartitem: (cartitem) => dispatch({ type: 'user/addUserCartItem', cartitem }),
+  addBookeditem: (cartitem) => dispatch({ type: 'user/addUserBookedItem', cartitem }),
+  addAppointment: (appointment) => dispatch({ type: 'user/addUserAppointment', appointment }),
   clearCarts: (user, authorization) => dispatch({ type: 'user/clearCarts', user, authorization }),
 });
 

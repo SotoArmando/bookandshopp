@@ -140,8 +140,8 @@
     border-bottom-right-radius: 1rem * core($i);
   }
   .borderradius_left_#{$i} {
-    border-top-left-radius: 1rem * core($i);
-    border-bottom-left-radius: 1rem * core($i);
+    border-top-left-radius: 3.6rem * core($i);
+    border-bottom-left-radius: 3.6rem * core($i);
   }
 }
 

@@ -30,7 +30,7 @@ export default function Rowitemcartdisplay({
   return (
     <div data-testid="Rowitemcartdisplay" className={`row back_3 borderradius_14  mar_l${marginh} mar_r${marginh} mar_t${marginv} mar_b${marginv} half_horizontalmar half_verticalmar`}>
       <div
-        className="corebox_4 corebox_x4  cover"
+        className="corebox_4  corebox_x4  cover"
         style={{
           backgroundImage: `${pictureid === 0 ? '' : `url(${url0(pictureid)})`}`,
         }}

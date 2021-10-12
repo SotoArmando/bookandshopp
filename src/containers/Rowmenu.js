@@ -9,7 +9,7 @@ function Rowmenu({
   RemoveStoreitemfromShopcart, RemoveStoreitemfromBookcart,
   RemovepreviousSession,
   id: activesessionid, upstreamUser,
-  handleColumnMenuisOpenSwitch, shopcart, bookcart, ClearCarts,
+  handleColumnMenuisOpenSwitch, shopcart, bookcart, ClearCarts, ClearAppointments,
 }) {
   const history = useHistory();
   const handleCartClick = useCallback((operation, id, index) => {
@@ -38,6 +38,7 @@ function Rowmenu({
       case 'Sign out':
         RemovepreviousSession();
         ClearCarts();
+        ClearAppointments();
         history.push(v);
         break;
       default:
@@ -77,6 +78,7 @@ Rowmenu.propTypes = {
   id: PropTypes.number.isRequired,
   upstreamUser: PropTypes.func.isRequired,
   ClearCarts: PropTypes.func.isRequired,
+  ClearAppointments: PropTypes.func.isRequired,
   handleColumnMenuisOpenSwitch: PropTypes.func.isRequired,
   shopcart: PropTypes.arrayOf(PropTypes.number).isRequired,
   bookcart: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -94,6 +96,7 @@ const mapDispatchtoProps = (dispatch) => ({
   RemoveStoreitemfromBookcart: (cartitem) => dispatch({ type: 'user/deleteStoreItemFromUserBookingCart', cartitem }),
   RemovepreviousSession: () => dispatch({ type: 'sessions/Logout' }),
   ClearCarts: () => dispatch({ type: 'user/clearCarts' }),
+  ClearAppointments: () => dispatch({ type: 'user/clearAppointments' }),
 });
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(Rowmenu);

@@ -12,11 +12,13 @@ import sessionProvider from './res/sessionprovider';
 import Pagelifestyle from './containers/Pagelifestyle';
 import Pagecommitsession from './containers/Pagecommitsession';
 import Pagetestdrive from './containers/Pagetestdrive';
+import Pageappointments from './containers/Pageappointments';
 
 function App() {
   const paths = {
     '/shop': Pagehomepath,
     '/configure': Pagecommitsession,
+    '/appointments': Pageappointments,
     '/checkout': Pagecommitsession,
     '/book': Pagetestdrive,
     '/sign': Pagesignsession,
@@ -36,8 +38,9 @@ function App() {
     }, authorization).fetch();
   }, []);
 
-  const upstreamUser = (id, payload, type) => {
-    sessionProvider().upstreamUserAction(type, id, payload, authorization);
+  const upstreamUser = (id, payload, type, handleSuccesfulAuthorization) => {
+    sessionProvider(payload, handleSuccesfulAuthorization)
+      .upstreamUserAction(type, id, payload, authorization);
   };
 
   const handleColumnMenuisOpenSwitch = (val = !ColumnMenuisOpen) => {
@@ -60,9 +63,13 @@ function App() {
             >
               {ColumnMenuisOpen ? <div className="corebox_x14 maxedcorebox_x14 mobilehide  " /> : []}
               <div className="col bodyheight gbasis_20">
-                <View items={items} setAuthorization={setAuthorization} upstreamUser={upstreamUser}>
-                  <div className="maxedcorebox_4" />
-                </View>
+                <div className="maxedcorebox_4" />
+                <View
+                  items={items}
+                  setAuthorization={setAuthorization}
+                  authorization={authorization}
+                  upstreamUser={upstreamUser}
+                />
               </div>
             </div>
           </Route>

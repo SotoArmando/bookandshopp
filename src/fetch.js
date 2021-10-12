@@ -13,6 +13,7 @@ const Serverdomainurls = {
   items_crud: `${Serverdomain}items`,
   sessions_crud: `${Serverdomain}sessions`,
   authenticate: `${Serverdomain}authentication`,
+  Appointments: `${Serverdomain}appointments`,
 };
 
 const dbkeys = {
@@ -21,18 +22,20 @@ const dbkeys = {
 };
 
 const Defaultstate = {
-  appstate: {
-    bookcart: [],
+  user: {
     shopcart: [],
+    bookcart: [],
+    appointment: [],
   },
   session: {
-    active: false,
-    activesession: {
-      id: -1,
-      user: '',
-      bookcart: [],
-      shopcart: [],
-    },
+    id: -1,
+    user: '',
+    nick: '',
+    authorization: '',
+
+  },
+  appstate: {
+    storeitems: [],
   },
 };
 function buildFormData(formData, data, parentKey) {

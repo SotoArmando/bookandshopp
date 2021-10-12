@@ -5,21 +5,17 @@ export default function sessionProvider({ user, password, nick } = {},
   handleSuccesfulAuthorization,
   handleUnauthorizederrors) {
   let privatepassword;
-  const { users_crud: url0, authenticate: url1 } = dbkeys;
+  const { UsersCrud: url0, authenticate: url1 } = dbkeys;
   let fetchersession;
 
   function handleResponse(response) {
     const { status } = fetchersession;
-
+    // eslint-disable-next-line no-debugger
+    debugger;
     if (status > 400) {
       handleUnauthorizederrors([Object.entries(response)]);
     } else {
-      const {
-        token, bookcart, shopcart, exp, username, id,
-      } = response;
-      handleSuccesfulAuthorization({
-        token, bookcart, shopcart, exp, username, id,
-      });
+      handleSuccesfulAuthorization(response);
     }
   }
 
@@ -30,20 +26,28 @@ export default function sessionProvider({ user, password, nick } = {},
   }
 
   function upstreamUserAction(type, id, payload, authorization) {
-    const { BookedItemsCrud, CartItemsCrud } = dbkeys;
+    const { BookedItemsCrud, CartItemsCrud, Appointments } = dbkeys;
     deleteIdkey(payload);
     switch (type) {
       case 'user/CreateBookeditem':
-        fetcher(`${BookedItemsCrud}/`, () => {}, authorization).fetchcrudOperation('POST', payload);
+        fetchersession = fetcher(`${BookedItemsCrud}/`, () => {}, authorization);
+        fetchersession.fetchcrudOperation('POST', payload);
         break;
       case 'user/DestroyBookeditem':
-        fetcher(`${BookedItemsCrud}/${id}`, () => {}, authorization).fetchcrudOperation('DELETE');
+        fetchersession = fetcher(`${BookedItemsCrud}/${id}`, () => {}, authorization);
+        fetchersession.fetchcrudOperation('DELETE');
         break;
       case 'user/CreateCartitem':
-        fetcher(`${CartItemsCrud}/`, () => {}, authorization).fetchcrudOperation('POST', payload);
+        fetchersession = fetcher(`${CartItemsCrud}/`, () => {}, authorization);
+        fetchersession.fetchcrudOperation('POST', payload);
         break;
       case 'user/DestroyCartitem':
-        fetcher(`${CartItemsCrud}/${id}`, () => {}, authorization).fetchcrudOperation('DELETE');
+        fetchersession = fetcher(`${CartItemsCrud}/${id}`, () => {}, authorization);
+        fetchersession.fetchcrudOperation('DELETE');
+        break;
+      case 'user/CreateAppointment':
+        fetchersession = fetcher(`${Appointments}/`, handleResponse, authorization);
+        fetchersession.fetchcrudOperation('POST', payload);
         break;
       default:
         break;
