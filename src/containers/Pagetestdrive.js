@@ -1,4 +1,7 @@
+import { useHistory } from 'react-router';
+
 export default function Pagetestdrive() {
+  const history = useHistory();
   return (
     [
       <div key="Pagetestdrive" className="allsize col gbasis_20 pic_vespa_1 transparent contain ">
@@ -13,7 +16,13 @@ export default function Pagetestdrive() {
           </div>
           <div className="row wrap half_horizontalmar half_verticalmar nmar_l22 nmar_r22">
             <div className="corebox_x10 center corebox_3 half_horizontalmar half_verticalmar mar_l22 mar_r22 btn_u fore_9 border_3">London</div>
-            <div className="corebox_x10 center corebox_3 back_2 half_horizontalmar half_verticalmar mar_l22 mar_r22 fore_green_o0 btn_u">Book now</div>
+            <div
+              aria-hidden
+              className="corebox_x10 center corebox_3 back_2 half_horizontalmar half_verticalmar mar_l22 mar_r22 fore_green_o0 btn_u"
+              onClick={() => history.push('/book')}
+            >
+              Book now
+            </div>
           </div>
         </div>
 

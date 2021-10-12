@@ -20,7 +20,8 @@ function App() {
     '/configure': Pagecommitsession,
     '/appointments': Pageappointments,
     '/checkout': Pagecommitsession,
-    '/book': Pagetestdrive,
+    '/testdrive': Pagetestdrive,
+    '/book': Pagehomepath,
     '/sign': Pagesignsession,
     '/style': Pagelifestyle,
     '/preview/:id': Pageitempreview,
@@ -38,8 +39,10 @@ function App() {
     }, authorization).fetch();
   }, []);
 
-  const upstreamUser = (id, payload, type, handleSuccesfulAuthorization) => {
-    sessionProvider(payload, handleSuccesfulAuthorization)
+  const upstreamUser = (id, payload, type,
+    handleSuccesfulAuthorization,
+    handleUnauthorizederrors) => {
+    sessionProvider(payload, handleSuccesfulAuthorization, handleUnauthorizederrors)
       .upstreamUserAction(type, id, payload, authorization);
   };
 

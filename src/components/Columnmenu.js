@@ -16,7 +16,7 @@ export default function Colummenu({ handleColumnMenuisOpenSwitch }) {
     Models: '/',
     Lifestyle: '/style',
     Shop: '/shop',
-    'Test Drive': '/book',
+    'Test Drive': '/testdrive',
   });
 
   const handleItemClick = (path) => {

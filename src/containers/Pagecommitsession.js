@@ -24,8 +24,6 @@ function Pagecommitsession({
   }
 
   function handleSuccesfulAuthorization(response) {
-    // eslint-disable-next-line no-debugger
-    debugger;
     addAppointment(response);
     bookcart.forEach(({ id }) => {
       upstreamUser(id, {}, 'user/DestroyBookeditem');
@@ -44,7 +42,7 @@ function Pagecommitsession({
       ...payload,
       cartitem: cart0,
       bookeditem: cart1,
-    }, 'user/CreateAppointment', handleSuccesfulAuthorization);
+    }, 'user/CreateAppointment', handleSuccesfulAuthorization, handleUnauthorizederrors);
   };
 
   const seekforExceptions = () => {
