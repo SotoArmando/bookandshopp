@@ -10,6 +10,8 @@ export default function Rowitemcartdisplay({
   marginh,
   marginv,
 }) {
+  // eslint-disable-next-line no-debugger
+  debugger;
   // Enables the use Is not an number to check id passed to the rowitemcartdisplay
   // eslint-disable-next-line no-restricted-globals
   if (isNaN(Itemid)) { throw Error('Rowitemcartdisplay: Is not an number id'); }

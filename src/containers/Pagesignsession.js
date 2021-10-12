@@ -34,8 +34,8 @@ function Pagesignsession({
       id,
     }, token);
     clearCarts();
-    bookcart.forEach((o) => addBookeditem(o));
-    shopcart.forEach((o) => addCartitem(o));
+    bookcart.filter(({ appointment_id: a }) => a === null).forEach((o) => addBookeditem(o));
+    shopcart.filter(({ appointment_id: a }) => a === null).forEach((o) => addCartitem(o));
     appointment.forEach((o) => addAppointment(o));
     setAuthorization(token);
     history.push('/');

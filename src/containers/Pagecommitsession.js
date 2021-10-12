@@ -24,6 +24,8 @@ function Pagecommitsession({
   }
 
   function handleSuccesfulAuthorization(response) {
+    // eslint-disable-next-line no-debugger
+    debugger;
     addAppointment(response);
     bookcart.forEach(({ id }) => {
       upstreamUser(id, {}, 'user/DestroyBookeditem');

@@ -19,18 +19,13 @@ export default function sessionProvider({ user, password, nick } = {},
     }
   }
 
-  function deleteIdkey(a) {
-    // https://eslint.org/docs/rules/no-param-reassign
-    // eslint-disable-next-line no-param-reassign
-    delete a.id;
-  }
-
   function upstreamUserAction(type, id, payload, authorization) {
     const { BookedItemsCrud, CartItemsCrud, Appointments } = dbkeys;
-    deleteIdkey(payload);
+    // eslint-disable-next-line no-debugger
+    debugger;
     switch (type) {
       case 'user/CreateBookeditem':
-        fetchersession = fetcher(`${BookedItemsCrud}/`, () => {}, authorization);
+        fetchersession = fetcher(`${BookedItemsCrud}/`, handleResponse, authorization);
         fetchersession.fetchcrudOperation('POST', payload);
         break;
       case 'user/DestroyBookeditem':
@@ -38,7 +33,7 @@ export default function sessionProvider({ user, password, nick } = {},
         fetchersession.fetchcrudOperation('DELETE');
         break;
       case 'user/CreateCartitem':
-        fetchersession = fetcher(`${CartItemsCrud}/`, () => {}, authorization);
+        fetchersession = fetcher(`${CartItemsCrud}/`, handleResponse, authorization);
         fetchersession.fetchcrudOperation('POST', payload);
         break;
       case 'user/DestroyCartitem':

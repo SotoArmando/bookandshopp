@@ -12,6 +12,13 @@ function Pagehomepath({
 }) {
   const history = useHistory();
 
+  const handleSuccesfulCartAuthorization = (response) => {
+    addStoreitemToShopcart(response);
+  };
+  const handleSuccesfulBookAuthorization = (response) => {
+    addStoreitemToBookcart(response);
+  };
+
   const handleItemsClick = (operation, {
     id,
   }) => {
@@ -23,12 +30,10 @@ function Pagehomepath({
         history.push(`/preview/${id}`);
         break;
       case 'Add to Cart':
-        addStoreitemToShopcart({ item_id: id });
-        upstreamUser(activesessionid, { user_id: activesessionid, item_id: id }, 'user/CreateCartitem');
+        upstreamUser(activesessionid, { user_id: activesessionid, item_id: id }, 'user/CreateCartitem', handleSuccesfulCartAuthorization);
         break;
       case 'Add to Booking':
-        addStoreitemToBookcart({ item_id: id });
-        upstreamUser(activesessionid, { user_id: activesessionid, item_id: id }, 'user/CreateBookeditem');
+        upstreamUser(activesessionid, { user_id: activesessionid, item_id: id }, 'user/CreateBookeditem', handleSuccesfulBookAuthorization);
         break;
       default:
         break;

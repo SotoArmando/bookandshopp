@@ -1,7 +1,7 @@
 import rapidapi from './env';
 
-// const Serverdomain = 'http://127.0.0.1:3000/';
-const Serverdomain = 'https://bookandshoprails.herokuapp.com/';
+const Serverdomain = 'http://127.0.0.1:3000/';
+// const Serverdomain = 'https://bookandshoprails.herokuapp.com/';
 
 const Serverdomainurls = {
   'Return all items in db': `${Serverdomain}items`,
