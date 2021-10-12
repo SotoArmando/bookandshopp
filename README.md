@@ -35,15 +35,17 @@ npm run
 
 ### Usage
 
-https://bookandshoprails.herokuapp.com/
-  https://bookandshoprails.herokuapp.com/items
-  https://bookandshoprails.herokuapp.com/users
-  https://bookandshoprails.herokuapp.com/sessions
 
-https://bookandshopp.herokuapp.com/
-  https://bookandshopp.herokuapp.com/preview
-  https://bookandshopp.herokuapp.com/shop
-  https://bookandshopp.herokuapp.com/book
+- https://bookandshoprails.herokuapp.com/
+- https://bookandshoprails.herokuapp.com/items
+- https://bookandshoprails.herokuapp.com/users
+- https://bookandshoprails.herokuapp.com/sessions
+
+- https://bookandshopp.herokuapp.com/
+- https://bookandshopp.herokuapp.com/preview/:id
+- https://bookandshopp.herokuapp.com/shop
+- https://bookandshopp.herokuapp.com/book
+
 
 ### Run tests
 

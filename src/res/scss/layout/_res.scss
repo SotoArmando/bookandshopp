@@ -1,0 +1,152 @@
+
+$borders: ("0", rgb(173, 183, 255), 1px),
+  ("1", rgb(190, 190, 190), 1rem * core(15)),
+  ("2", rgb(69, 208, 156), 1rem * core(15)),
+  ("3", rgb(242.25, 242.25, 242.25), 1rem * core(15)),
+  ("4", rgb(229.5, 229.5, 229.5), 1rem * core(17)),
+  ("5", #0bbdad, 1rem * core(17)), ("6", #0bbdad, 1rem * core(20)),
+  ("7", #6f6f73, 1rem * core(12)), ("8", #b8b7b7, 1px),
+  ("9", #fff, 1rem * core(22));
+
+$jpg-pic: ("lifestylepic_0", "../../png/pagelifestyle/pic_1.jpg"),
+  ("lifestylepic_1", "../../png/pagelifestyle/pic_2.jpg"),
+  ("lifestylepic_2", "../../png/pagelifestyle/pic_3.jpg"),
+  ("lifestylepic_3", "../../png/pagelifestyle/pic_4.jpg"),
+  ("lifestylepic_4", "../../png/pagelifestyle/pic_5.jpg"),
+  ("vespa_0", "../../png/vespa1.png"),
+  ("vespa_1", "../../png/vespa2.png");
+
+$icons: ("twitter", "../../svg/013-twitter-1.svg"),
+  ("facebook", "../../svg/043-facebook-1.svg"),
+  ("instagram", "../../svg/034-instagram.svg"),
+  ("google", "../../svg/035-google-plus.svg"),
+  ("path", "../../svg/028-path.svg"),
+  ("prev", "../../png/prev.png")  ,
+  ("next", "../../png/next.png"  ),
+  ("menu", "../../png/menu.png"),
+  ("close", "../../png/close.png"),
+  ("vespa", "../../png/vespa.png"),
+  ("play", "../../png/play.png"),;
+
+$back-colors: ("granny-smith-apple", #bbdb9bff),
+  ("raisin-black", #202030ff),
+  ("tart-orange", #fb4d3dff),
+  ("pictorial-carmine", #ca1551ff),
+  ("rhythm", #7e7f9aff), ("na", #000),
+  ("green_a1", #0bbdad), ("0", #f9f9f9),
+  ("whiter15", rgba(255, 255, 255, 0.84)),
+  ("black_o4", #333),
+  ("black_o5", #e6d3d3),
+  ("1", #008000),
+  ("green_o0", #abe077),
+  ("green_o1", rgba(171, 224, 119, 0.94)),
+  ("green_o2", rgba(153, 214, 91, 0.94)),
+  ("2", #fff),
+  ("black_o1", #0a0a0a),
+  ("black_o2", #14150f),
+  ("black_o3", #b8b7b7),
+  ("white_o1", #f5f5f5),
+  ("nav_o1", #fffff5),
+  ("lifestyle_0",#99c210),
+  ("lifestyle_1",#ffc600),
+  ("lifestyle_2",#10bbb5),
+  ("lifestyle_3",#252525),
+  (
+    "nice_white_o0",
+    (
+      radial-gradient(rgb(255, 255, 220), white),
+      linear-gradient(white, white)
+    )
+  ),
+  (
+    "wrapperback_0",
+    linear-gradient(45deg, rgb(253, 255, 253), rgb(255, 253, 255))
+  ),
+  (
+    "linear_0",
+    (
+      linear-gradient(
+        180deg,
+        rgba(232, 232, 232, 0.5) 0%,
+        rgba(0, 0, 0, 0.41) 226.57%
+      ),
+      linear-gradient(#f5f5f5, #f5f5f5)
+    )
+  ),
+  (
+    "linear_1",
+    (
+      linear-gradient(rgba(245, 245, 245, 0.5), rgba(245, 245, 245, 0.5)),
+      linear-gradient(
+        180deg,
+        rgba(232, 232, 232, 1) 0%,
+        rgba(0, 0, 0, 1) 226.57%
+      )
+    )
+  ),
+  ("linear_2", (linear-gradient(#f5f5f5, #f0f1f0, #f5f5f5))),
+  ("linear_3", (linear-gradient(#fcfcff, #f5f5f5))),
+  ("white_99", hsl(0deg, 0%, 94%)), ("black_o0", #f3f3f3),
+  ("black_o1", #9da7a4),
+  (
+    "2b",
+    (linear-gradient(-45deg, rgb(252.5, 252.5, 255), rgb(255, 252.5, 252.5)))
+  ),
+  (
+    "2c",
+    (linear-gradient(-45deg, rgb(252.5, 252.5, 255), rgb(255, 252.5, 252.5)))
+  ),
+  ("2d", (linear-gradient(0deg, rgb(250, 235, 235), rgb(245, 245, 255)))),
+  ("3", rgba(56, 56, 56, 0.04)), ("4", #fde07b), ("5", #ffdc63),
+  ("6", #c4c4c4), ("7", #fee580), ("8", rgba(254, 229, 128, 0.14)),
+  ("mask_pink", #e490b7), ("green", rgb(69, 208, 156)),
+  ("red", rgb(248, 64, 43)),
+  ("9", #f6fafd),
+  ("grad_9", linear-gradient(45deg, rgb(225, 240, 240), #eafafa)),
+  (
+    "grad_10",
+    linear-gradient(180deg, #fffafa 0%, rgba(255, 255, 255, 0) 100%)
+  ),
+  ("grad_11", linear-gradient(180deg, #fffafa 0%, #fafaff 100%)),
+  ("10", rgb(253, 253, 253)), ("12", rgba(56, 56, 56, 0.94)),
+  ("13", rgba(208, 234, 255, 0.94)), ("14", rgba(208, 197, 255, 0.94)),
+  ("15", rgb(252.45, 252.45, 252.45)), ("16", rgb(249.9, 249.9, 249.9)),
+  ("17", rgb(191.25, 191.25, 191.25)), ("18", rgb(25.5, 25.5, 25.5)),
+  ("19", rgb(87, 242, 224)), ("20", rgb(47, 47, 47)), ("21", #0bbdad),
+  (
+    "22",
+    linear-gradient(180deg, rgba(0, 0, 0, 0.24) -30%, rgba(0, 0, 0, 0) 98.35%)
+  ),
+  ("23", rgb(250, 250, 250)), ("24", rgb(83, 238, 191)), ("white", white),
+  ("23", rgb(250, 250, 250)), ("white_o1", #fcfcfc), ("white_o0", #fffeff);
+
+$fore-colors: ("0", #008000),
+  ("1", #008000),
+  ("2", #e490b7),
+  ("black_o3", #828282),
+  ("black_o1", #0a0a0a),
+  ("black_o2", #14150f),
+  ("4", rgba(56, 56, 56, 0.24)),
+  ("land_o0", #bac4cb),
+  ("black_o2", #14150f),
+  ("4", rgba(56, 56, 56, 0.24)),
+  ("6", rgba(0, 0, 15, 0.34)), ("5", #383838),
+  ("7", rgba(56, 56, 56, 0.94)),
+  ("8", #3838383d),
+  ("9", rgba(250, 250, 250, 0.94)),
+  ("10", rgb(233, 244, 245)),
+  ("green", rgb(69, 208, 156)),
+  ("green_o0", #abe077),
+  ("red", rgb(248, 64, 43)),
+  ("12", rgb(229.5, 229.5, 229.5)),
+  ("11", rgb(47, 47, 47)),
+  ("12", rgb(229.5, 229.5, 229.5)),
+  ("13", rgb(137.7, 137.7, 137.7)),
+  ("14", rgb(191.25, 191.25, 191.25)),
+  ("15", rgb(191.25, 191.25, 191.25)),
+  ("16", rgb(76.5, 76.5, 76.5)),
+  ("17", rgb(102, 102, 102)),
+  ("18", white),
+  ("19", #0bbdad),
+  ("20", rgb(83, 238, 191)),
+  ("21", #969696);

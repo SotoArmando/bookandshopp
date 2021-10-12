@@ -1,0 +1,102 @@
+[
+    {
+        "id": 1,
+        "make": "2715",
+        "model": "B-Bone",
+        "year": 2015,
+        "duration": null,
+        "created_at": "2021-09-24T17:32:46.754Z",
+        "updated_at": "2021-09-24T17:32:46.754Z",
+        "pictureid": "5562"
+    },
+    {
+        "id": 2,
+        "make": "2718",
+        "model": "Besbi",
+        "year": 2015,
+        "duration": null,
+        "created_at": "2021-09-24T17:32:46.762Z",
+        "updated_at": "2021-09-24T17:32:46.762Z",
+        "pictureid": "5568"
+    },
+    {
+        "id": 3,
+        "make": "2726",
+        "model": "Daystar",
+        "year": 2015,
+        "duration": null,
+        "created_at": "2021-09-24T17:32:46.766Z",
+        "updated_at": "2021-09-24T17:32:46.766Z",
+        "pictureid": "5582"
+    },
+    {
+        "id": 4,
+        "make": "2728",
+        "model": "Daystar 125",
+        "year": 2015,
+        "duration": null,
+        "created_at": "2021-09-24T17:32:46.772Z",
+        "updated_at": "2021-09-24T17:32:46.772Z",
+        "pictureid": "5586"
+    },
+    {
+        "id": 5,
+        "make": "2745",
+        "model": "RoadSport",
+        "year": 2015,
+        "duration": null,
+        "created_at": "2021-09-24T17:32:46.776Z",
+        "updated_at": "2021-09-24T17:32:46.776Z",
+        "pictureid": "5610"
+    },
+    {
+        "id": 6,
+        "make": "2747",
+        "model": "RoadSport 125",
+        "year": 2015,
+        "duration": null,
+        "created_at": "2021-09-24T17:32:46.779Z",
+        "updated_at": "2021-09-24T17:32:46.779Z",
+        "pictureid": "5613"
+    },
+    {
+        "id": 7,
+        "make": "2756",
+        "model": "S1",
+        "year": 2015,
+        "duration": null,
+        "created_at": "2021-09-24T17:32:46.783Z",
+        "updated_at": "2021-09-24T17:32:46.783Z",
+        "pictureid": "5634"
+    },
+    {
+        "id": 8,
+        "make": "2763",
+        "model": "S3 125",
+        "year": 2015,
+        "duration": null,
+        "created_at": "2021-09-24T17:32:46.786Z",
+        "updated_at": "2021-09-24T17:32:46.786Z",
+        "pictureid": "5645"
+    },
+    {
+        "id": 9,
+        "make": "2764",
+        "model": "S3 Advance",
+        "year": 2015,
+        "duration": null,
+        "created_at": "2021-09-24T17:32:46.790Z",
+        "updated_at": "2021-09-24T17:32:46.790Z",
+        "pictureid": "5647"
+    },
+    {
+        "id": "abc123",
+        "make": "2773",
+        "model": "VJF 250",
+        "year": 2015,
+        "duration": null,
+        "created_at": "2021-09-24T17:32:46.793Z",
+        "updated_at": "2021-09-24T17:32:46.793Z",
+        "pictureid": "5660"
+    }
+]

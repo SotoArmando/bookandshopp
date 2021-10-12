@@ -1,0 +1,23 @@
+@function core($base) {
+  $result: 0.009658113525734344;
+
+  @for $_ from 1 through $base {
+    $result: $result * 1.1875;
+  }
+
+  @return $result;
+}
+
+@function core_font($base: 0) {
+  $result: core(27 + $base);
+
+  @return $result;
+}
+
+@function body_width($base: 1, $width: 100%) {
+  @return $width / $base;
+}
+
+@function core_box($base: 0, $width: 100%) {
+  @return core_font($base) * $width;
+}

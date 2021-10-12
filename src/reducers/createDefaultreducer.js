@@ -1,48 +1,127 @@
-const ExpireTime = 60;
-
-/* eslint max-len: 0 */
-
-function createDefaultreducer(name) {
-  return function defaultreducer(state = {}, Payload) {
-    const { type: dispatch, k, v } = Payload;
-
-    switch (dispatch) {
-      case (`u_${name}`):
-        
-        return { ...state, [k]: v, LoadedAt: (new Date()).toISOString() };
-      case (`d_${name}`):
-        return { ...state, [k]: undefined };
-      case ('persist/REHYDRATE'): {
-        
-        const {
-          payload: { [name]: rehydrate, [name]: { LoadedAt } } =
-          { [name]: { LoadedAt: new Date().toISOString() }, [name]: {} },
-        } = Payload;
-        const expireDate = new Date(LoadedAt);
-        const isExpired = expireDate.setSeconds(expireDate.getSeconds() + ExpireTime) < new Date();
-        const rehydrateorstate = (Object.keys(rehydrate).length > 1 ? rehydrate : state);
-        return { ...(isExpired ? state : rehydrateorstate) };
-      }
-
-      default:
-        return { ...state };
-    }
-  };
-}
-
-function createMapDispatchtoProps() {
-  return function x(dispatch) {
-    return [{}, 'session','appstate','system'].reduce((total, e) => {
-      const b = `u_${e}`;
-      const c = `d_${e}`;
-
+function sessionsReducer(state = {
+  id: -1,
+  user: '',
+  nick: '',
+  authorization: '',
+}, action) {
+  const {
+    type, user, authorization,
+  } = action;
+  switch (type) {
+    case 'sessions/Login': {
       return {
-        ...(total || {}),
-        [b]: (k, v) => dispatch({ type: b, k, v }),
-        [c]: (k, v) => dispatch({ type: c, k, v }),
+        ...state,
+        ...user,
+        authorization,
       };
-    });
-  };
+    }
+    case 'sessions/Logout': {
+      return {
+        ...state,
+        id: -1,
+        user: '',
+        nick: '',
+        authorization: '',
+      };
+    }
+    case ('persist/REHYDRATE'): {
+      const {
+        payload: { session: rehydrate } = { session: {} },
+      } = action;
+      const rehydrateorstate = (Object.keys(rehydrate).length > 1 ? rehydrate : state);
+      return { ...(rehydrateorstate) };
+    }
+    default:
+      return state;
+  }
 }
 
-export { createMapDispatchtoProps, createDefaultreducer };
+function userReducer(state = {
+  shopcart: [],
+  bookcart: [],
+  appointment: [],
+}, action) {
+  const {
+    type, cartitem, appointment: newappointment,
+  } = action;
+  const { shopcart, bookcart, appointment } = state;
+
+  switch (type) {
+    case 'user/addUserAppointment': {
+      return {
+        ...state,
+        appointment: [...appointment, newappointment],
+      };
+    }
+    case 'user/addUserCartItem': {
+      return {
+        ...state,
+        shopcart: [...shopcart, cartitem],
+      };
+    }
+    case 'user/addUserBookedItem': {
+      return {
+        ...state,
+        bookcart: [...bookcart, cartitem],
+      };
+    }
+    case 'user/deleteStoreItemFromUserShoppingCart': {
+      return {
+        ...state,
+        shopcart: [
+          ...shopcart.slice(0, cartitem),
+          ...shopcart.slice(cartitem + 1)],
+      };
+    }
+    case 'user/deleteStoreItemFromUserBookingCart': {
+      return {
+        ...state,
+        bookcart: [
+          ...bookcart.slice(0, cartitem),
+          ...bookcart.slice(cartitem + 1)],
+      };
+    }
+    case 'user/clearCarts': {
+      return {
+        bookcart: [],
+        shopcart: [],
+        appointment,
+      };
+    }
+    case 'user/clearAppointments': {
+      return {
+        ...state,
+        appointment: [],
+      };
+    }
+    default:
+      return state;
+  }
+}
+
+function appstateReducer(state = {
+  storeitems: [],
+}, action) {
+  const {
+    type, storeitems,
+  } = action;
+  switch (type) {
+    case 'appstate/updateStoreItems': {
+      return {
+        ...state,
+        storeitems,
+      };
+    }
+    case ('persist/REHYDRATE'): {
+      const {
+        payload: { appstate: rehydrate } = { appstate: {} },
+      } = action;
+      const rehydrateorstate = (Object.keys(rehydrate).length > 1 ? rehydrate : state);
+      return { ...(rehydrateorstate) };
+    }
+    default:
+      return state;
+  }
+}
+
+export { sessionsReducer, appstateReducer, userReducer };
