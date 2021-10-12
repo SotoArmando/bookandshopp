@@ -19,7 +19,7 @@ export default function Pagelifestyle({ children }) {
       text: 'prestige',
     }, 4]][i]);
 
-  const squareElement = ({ id }) => (
+  const squareElement = ({ _id: id }) => (
     <div key={id} className="row gbasis_43">
       {id.map((e) => (
         e.text ? (
