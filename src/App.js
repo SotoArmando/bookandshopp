@@ -10,42 +10,38 @@ import Pageitempreview from './containers/Pageitempreview';
 // import './res/fonts/Opensans/stylesheet.scss';
 import sessionProvider from './res/sessionprovider';
 import Pagelifestyle from './containers/Pagelifestyle';
+import Pagecommitsession from './containers/Pagecommitsession';
+import Pagetestdrive from './containers/Pagetestdrive';
 
 function App() {
   const paths = {
     '/shop': Pagehomepath,
-    '/book': Pagehomepath,
+    '/configure': Pagecommitsession,
+    '/checkout': Pagecommitsession,
+    '/book': Pagetestdrive,
     '/sign': Pagesignsession,
     '/style': Pagelifestyle,
     '/preview/:id': Pageitempreview,
     '/': Pagehomepath,
   };
 
-  const [appstate, setAppstate] = useState({
-    authorization: '',
-    data: [],
-    init: true,
-    ColumnMenuisOpen: false,
-  });
+  const [authorization, setAuthorization] = useState('');
+  const [items, setItems] = useState([]);
+  const [ColumnMenuisOpen, setColumnMenuisOpen] = useState(false);
 
   useEffect(() => {
     const { 'Return all items in db': url0 } = dbkeys;
-    const { authorization } = appstate;
     fetcher(url0, (response) => {
-      setAppstate({ ...appstate, data: response });
+      setItems(response);
     }, authorization).fetch();
-    setAppstate({ ...appstate, init: false });
   }, []);
 
-  const upstreamUser = (id, payload) => {
-    const { authorization } = appstate;
-    sessionProvider().upstreamUser(id, payload, authorization);
+  const upstreamUser = (id, payload, type) => {
+    sessionProvider().upstreamUserAction(type, id, payload, authorization);
   };
 
-  const { ColumnMenuisOpen } = appstate;
-
   const handleColumnMenuisOpenSwitch = (val = !ColumnMenuisOpen) => {
-    setAppstate({ ...appstate, ColumnMenuisOpen: val });
+    setColumnMenuisOpen(val);
     return val;
   };
 
@@ -63,9 +59,9 @@ function App() {
               className="row start items_start gbasis_30 allsize bodyheight back_2"
             >
               {ColumnMenuisOpen ? <div className="corebox_x14 maxedcorebox_x14 mobilehide  " /> : []}
-              <div className="col bodyheight">
-                <View appdata={appstate} setAppstate={setAppstate} upstreamUser={upstreamUser}>
-                  <div className="corebox_4" />
+              <div className="col bodyheight gbasis_20">
+                <View items={items} setAuthorization={setAuthorization} upstreamUser={upstreamUser}>
+                  <div className="maxedcorebox_4" />
                 </View>
               </div>
             </div>

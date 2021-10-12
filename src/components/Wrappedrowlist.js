@@ -18,7 +18,7 @@ export default function Wrappedrowlist({
 }) {
   const [page, setPage] = useState(0);
   return (
-    <div data-testid={testid} className={`wrappedrowcontainer allsize center ${className || ''}`}>
+    <div data-testid={testid} className={`wrappedrowcontainer allsize ${className || ''}`}>
       <div
         className={`row half_horizontalmar half_verticalmar mbasis_${
           basis - 1
@@ -26,9 +26,9 @@ export default function Wrappedrowlist({
           marginvoff || marginv
         } nmar_b${marginvoff || marginv} center`}
       >
-        {paginator(list, pagelimit, page).map((e, i) => (
+        {paginate ? paginator(list, pagelimit, page).map((e, i) => (
           <Item
-            key={[Item.name || Item.displayName, i].join('')}
+            key={[Item.name || Item.displayName, i, JSON.stringify(e)].join('')}
             handleClick={handleClick}
             marginh={marginh}
             marginv={marginv}
@@ -41,7 +41,23 @@ export default function Wrappedrowlist({
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...e}
           />
-        ))}
+        ))
+          : list.map((e, i) => (
+            <Item
+              key={[Item.name || Item.displayName, i, JSON.stringify(e)].join('')}
+              handleClick={handleClick}
+              marginh={marginh}
+              marginv={marginv}
+              flexgrow={1}
+              i={i}
+              id={e}
+            // #eslint-disable-next-line react/jsx-props-no-spreading
+            // In order to spread dynamicly objects it is needed to
+            // use spread operator over key-value objects.
+            // eslint-disable-next-line react/jsx-props-no-spreading
+              {...e}
+            />
+          ))}
       </div>
       {paginate ? (
         <div className="row mobilehide nopointerevents half_horizontalmar half_verticalmar mar_t22 absolute bottom allsize   ">

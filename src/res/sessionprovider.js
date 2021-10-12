@@ -6,21 +6,21 @@ export default function sessionProvider({ user, password, nick } = {},
   handleUnauthorizederrors) {
   let privatepassword;
   const { users_crud: url0, authenticate: url1 } = dbkeys;
+  let fetchersession;
 
-  function handleResponse({
-    error = false, token, bookcart, shopcart, exp, username, id,
-  }) {
-    if (error) {
-      handleUnauthorizederrors([error]);
+  function handleResponse(response) {
+    const { status } = fetchersession;
+
+    if (status > 400) {
+      handleUnauthorizederrors([Object.entries(response)]);
     } else {
+      const {
+        token, bookcart, shopcart, exp, username, id,
+      } = response;
       handleSuccesfulAuthorization({
         token, bookcart, shopcart, exp, username, id,
       });
     }
-  }
-
-  function handleUserCreationStatus() {
-
   }
 
   function deleteIdkey(a) {
@@ -29,29 +29,44 @@ export default function sessionProvider({ user, password, nick } = {},
     delete a.id;
   }
 
-  function upstreamUser(id, payload, authorization) {
+  function upstreamUserAction(type, id, payload, authorization) {
+    const { BookedItemsCrud, CartItemsCrud } = dbkeys;
     deleteIdkey(payload);
-    if (id) {
-      const { users_crud: url0 } = dbkeys;
-      fetcher(`${url0}/${id}?${new URLSearchParams({ user: JSON.stringify(payload) }).toString()}`, () => {}, authorization).fetchcrudOperation('PATCH');
+    switch (type) {
+      case 'user/CreateBookeditem':
+        fetcher(`${BookedItemsCrud}/`, () => {}, authorization).fetchcrudOperation('POST', payload);
+        break;
+      case 'user/DestroyBookeditem':
+        fetcher(`${BookedItemsCrud}/${id}`, () => {}, authorization).fetchcrudOperation('DELETE');
+        break;
+      case 'user/CreateCartitem':
+        fetcher(`${CartItemsCrud}/`, () => {}, authorization).fetchcrudOperation('POST', payload);
+        break;
+      case 'user/DestroyCartitem':
+        fetcher(`${CartItemsCrud}/${id}`, () => {}, authorization).fetchcrudOperation('DELETE');
+        break;
+      default:
+        break;
     }
   }
 
   function createnewUser() {
     privatepassword = SHA256(password).toString();
-    fetcher(url0, handleUserCreationStatus).fetchcrudOperation('POST', { user: { user, password: privatepassword, nick } });
+    fetchersession = fetcher(url0, handleResponse);
+    fetchersession.fetchcrudOperation('POST', { user: { user, password: privatepassword, nick } });
     return 0;
   }
 
   function authorize() {
     privatepassword = SHA256(password).toString();
-    fetcher(url1, (c) => handleResponse(c)).fetchcrudOperation('POST', { user, password: privatepassword });
+    fetchersession = fetcher(url1, handleResponse);
+    fetchersession.fetchcrudOperation('POST', { user: { user, password: privatepassword } });
     return 0;
   }
 
   return {
     authorize,
     createnewUser,
-    upstreamUser,
+    upstreamUserAction,
   };
 }

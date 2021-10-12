@@ -1,16 +1,18 @@
 import rapidapi from './env';
 
-// const Serverdomain = 'http://127.0.0.1:3000/';
-const Serverdomain = 'https://bookandshoprails.herokuapp.com/';
+const Serverdomain = 'http://127.0.0.1:3000/';
+// const Serverdomain = 'https://bookandshoprails.herokuapp.com/';
 
 const Serverdomainurls = {
   'Return all items in db': `${Serverdomain}items`,
   'Return all users in db': `${Serverdomain}users`,
   'Return item picture using id': (id) => `${Serverdomain}res/${id}.png`,
-  users_crud: `${Serverdomain}users`,
+  BookedItemsCrud: `${Serverdomain}bookeditems`,
+  CartItemsCrud: `${Serverdomain}cartitems`,
+  UsersCrud: `${Serverdomain}users`,
   items_crud: `${Serverdomain}items`,
   sessions_crud: `${Serverdomain}sessions`,
-  authenticate: `${Serverdomain}auth`,
+  authenticate: `${Serverdomain}authentication`,
 };
 
 const dbkeys = {
@@ -59,10 +61,13 @@ function fetcher(url, call, authorization) {
     headers: {
       'x-rapidapi-key': rapidapi,
       'x-rapidapi-host': 'motorcycle-specs-database.p.rapidapi.com',
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
   };
 
   const d = {
+    status: undefined,
     fetch: (u) => {
       fetch(u || url, options)
         .then((res) => res.json())
@@ -92,6 +97,9 @@ function fetcher(url, call, authorization) {
         },
         method: operation,
         body: operation === 'GET' ? undefined : jsonToFormData(body),
+      }).then((resp) => {
+        d.status = resp.status;
+        return resp;
       }).then((resp) => resp.json()).then(call);
     },
   };

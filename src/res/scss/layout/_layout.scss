@@ -25,7 +25,7 @@
   }
 }
 
-@for $i from 0 through 50 {
+@for $i from 0 through 100 {
   .iconsize_#{$i} {
     min-width: 3.6rem * core($i) !important;
     min-height: 3.6rem * core($i) !important;
@@ -371,6 +371,10 @@
     &.cover {
       background-size: cover !important;
     }
+
+    &.bend_0 {
+      background-position: left bottom;
+    }
   }
 }
 
@@ -456,7 +460,7 @@
     }
   }
 
-  @for $i from 0 through 50 {
+  @for $i from 0 through 100 {
     .mbasis_#{$i} {
       display: flex;
       flex-wrap: wrap;

@@ -65,7 +65,6 @@ export default function Colummenu({ handleColumnMenuisOpenSwitch }) {
     <div key="Colummenu2" className={`desktophide col nav_col_0d ${active ? 'active' : ''} p allsize back_2 border_r3 `}>
       <div className="row space_between">
         {menubtn}
-        <span aria-hidden="true" onClick={() => setActive(!active)} className="corebox_2 center maxedcorebox_x4">O/C</span>
       </div>
       <div className="corebox_11 col center items_start pad_l30 ">
         {

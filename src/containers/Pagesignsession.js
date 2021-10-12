@@ -6,8 +6,9 @@ import sessionProvider from '../res/sessionprovider';
 
 function Pagesignsession({
   syncroniseUserSession,
-  setAppstate,
-  appdata,
+  setAuthorization,
+  children,
+  clearCarts, addBookeditem, addCartitem,
 }) {
   const [sign, setSign] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -24,15 +25,16 @@ function Pagesignsession({
   }
 
   function handleSuccesfulAuthorization({
-    user, id, token, bookcart, shopcart, exp,
+    user, id, token, bookcart, shopcart,
   }) {
     syncroniseUserSession({
       user,
       id,
-      bookcart: bookcart.map((e) => parseInt(e, 10)),
-      shopcart: shopcart.map((e) => parseInt(e, 10)),
     }, token);
-    setAppstate({ ...appdata, authorization: token, expiration: exp });
+    clearCarts();
+    bookcart.forEach((o) => addBookeditem(o));
+    shopcart.forEach((o) => addCartitem(o));
+    setAuthorization(token);
     history.push('/');
   }
 
@@ -44,14 +46,18 @@ function Pagesignsession({
     setErrors([]);
     switch (operation) {
       case 'Sign up':
-        sessionProvider(payload,
-          () => { setSign(false); },
-          handleUnauthorizederrors).createnewUser();
+        sessionProvider(
+          payload,
+          () => { setSign(true); },
+          handleUnauthorizederrors,
+        ).createnewUser();
         break;
       case 'Sign in':
-        sessionProvider(payload,
+        sessionProvider(
+          payload,
           handleSuccesfulAuthorization,
-          handleUnauthorizederrors).authorize();
+          handleUnauthorizederrors,
+        ).authorize();
         break;
       default:
         break;
@@ -70,8 +76,9 @@ function Pagesignsession({
     } else { handleSessionProvide('Sign in', formstate); }
   }
 
-  return (
-    <div>
+  return [
+    children,
+    <div key="Pagesignsession">
       <div className="center col">
         <div className="maxedcorebox_x18">
           <span className="f_2 corebox_3 row items_center">Welcome</span>
@@ -102,7 +109,11 @@ function Pagesignsession({
           </form>
           {
             errors.length > 0
-              ? errors.map((e) => <div key={`error${e}`} className="corebox_2 fore_red">{e}</div>)
+              ? errors.map(([k, v]) => (
+                <div key={`error${k + v}`} className="corebox_2 fore_red capitalize center">
+                  {`${k} ${v || ''}`}
+                </div>
+              ))
               : []
           }
           <div className="row">
@@ -119,13 +130,17 @@ function Pagesignsession({
           </button>
         </div>
       </div>
-    </div>
-  );
+    </div>,
+  ];
 }
 
 Pagesignsession.propTypes = {
   syncroniseUserSession: PropTypes.func.isRequired,
-  setAppstate: PropTypes.func.isRequired,
+  setAuthorization: PropTypes.func.isRequired,
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  clearCarts: PropTypes.func.isRequired,
+  addBookeditem: PropTypes.func.isRequired,
+  addCartitem: PropTypes.func.isRequired,
   appdata: PropTypes.shape({
     data: PropTypes.arrayOf(
       PropTypes.shape({
@@ -148,6 +163,9 @@ const mapStatetoProps = ({
 }) => ({ bookcart, shopcart });
 const mapDispatchtoProps = (dispatch) => ({
   syncroniseUserSession: (user, authorization) => dispatch({ type: 'sessions/Login', user, authorization }),
+  addCartitem: (cartitem) => dispatch({ type: 'user/addUserBookedItem', cartitem }),
+  addBookeditem: (cartitem) => dispatch({ type: 'user/addUserCartItem', cartitem }),
+  clearCarts: (user, authorization) => dispatch({ type: 'user/clearCarts', user, authorization }),
 });
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(Pagesignsession);

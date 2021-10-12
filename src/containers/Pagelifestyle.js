@@ -36,8 +36,19 @@ export default function Pagelifestyle({ children }) {
   );
   return (
     [children,
-      <div key="Pagelifestyle" className="allsize center">
-        <div className="maxedcorebox_x20 center corebox_19 pad_l33 pad_r33 ">
+      <div
+        key="Pagelifestyle"
+        className="allsize center pic_vespa_0 transparent reverse bend_0"
+        style={{
+          transform: 'scaleX(-1)',
+        }}
+      >
+        <div
+          className="maxedcorebox_x20 center corebox_19 pad_l33 pad_r33 "
+          style={{
+            transform: 'scaleX(-1)',
+          }}
+        >
           <Wrappedrowlist list={list} item={squareElement} g="g" className="boxshadow_33" />
         </div>
       </div>,

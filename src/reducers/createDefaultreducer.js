@@ -1,70 +1,27 @@
 function sessionsReducer(state = {
-  active: false,
-  activesession: {
-    user: '',
-    id: 0,
-    nick: '',
-  },
+  id: -1,
+  user: '',
+  nick: '',
   authorization: '',
 }, action) {
   const {
-    type, user, authorization, cartitem,
+    type, user, authorization,
   } = action;
   switch (type) {
     case 'sessions/Login': {
       return {
         ...state,
-        active: true,
-        activesession: user,
+        ...user,
         authorization,
       };
     }
     case 'sessions/Logout': {
       return {
         ...state,
-        active: false,
-        activesession: {},
+        id: -1,
+        user: '',
+        nick: '',
         authorization: '',
-      };
-    }
-    case 'sessions/updateUserShoppingCart': {
-      return {
-        ...state,
-        activesession: {
-          ...state.activesession,
-          shopcart: [...state.activesession.shopcart, cartitem],
-        },
-      };
-    }
-    case 'sessions/updateUserBookingCart': {
-      return {
-        ...state,
-        activesession: {
-          ...state.activesession,
-          bookcart: [...state.activesession.bookcart, cartitem],
-        },
-      };
-    }
-    case 'sessions/deleteStoreItemFromUserShoppingCart': {
-      return {
-        ...state,
-        activesession: {
-          ...state.activesession,
-          shopcart: [
-            ...state.activesession.shopcart.slice(0, cartitem),
-            ...state.activesession.shopcart.slice(cartitem + 1)],
-        },
-      };
-    }
-    case 'sessions/deleteStoreItemFromUserBookingCart': {
-      return {
-        ...state,
-        activesession: {
-          ...state.activesession,
-          bookcart: [
-            ...state.activesession.bookcart.slice(0, cartitem),
-            ...state.activesession.bookcart.slice(cartitem + 1)],
-        },
       };
     }
     case ('persist/REHYDRATE'): {
@@ -73,6 +30,54 @@ function sessionsReducer(state = {
       } = action;
       const rehydrateorstate = (Object.keys(rehydrate).length > 1 ? rehydrate : state);
       return { ...(rehydrateorstate) };
+    }
+    default:
+      return state;
+  }
+}
+
+function userReducer(state = {
+  shopcart: [],
+  bookcart: [],
+}, action) {
+  const {
+    type, cartitem,
+  } = action;
+  const { shopcart, bookcart } = state;
+  switch (type) {
+    case 'user/addUserCartItem': {
+      return {
+        ...state,
+        shopcart: [...shopcart, cartitem],
+      };
+    }
+    case 'user/addUserBookedItem': {
+      return {
+        ...state,
+        bookcart: [...bookcart, cartitem],
+      };
+    }
+    case 'user/deleteStoreItemFromUserShoppingCart': {
+      return {
+        ...state,
+        shopcart: [
+          ...shopcart.slice(0, cartitem),
+          ...shopcart.slice(cartitem + 1)],
+      };
+    }
+    case 'user/deleteStoreItemFromUserBookingCart': {
+      return {
+        ...state,
+        bookcart: [
+          ...bookcart.slice(0, cartitem),
+          ...bookcart.slice(cartitem + 1)],
+      };
+    }
+    case 'user/clearCarts': {
+      return {
+        bookcart: [],
+        shopcart: [],
+      };
     }
     default:
       return state;
@@ -104,4 +109,4 @@ function appstateReducer(state = {
   }
 }
 
-export { sessionsReducer, appstateReducer };
+export { sessionsReducer, appstateReducer, userReducer };

@@ -6,13 +6,11 @@ import { dbkeys } from '../fetch';
 
 export default function Cellitemdisplay({
   handleClick,
-  item: {
-    make,
-    model,
-    year,
-    id,
-    description,
-  },
+  make,
+  model,
+  year,
+  id,
+  description,
   picture: {
     pictureid,
   },
@@ -82,13 +80,11 @@ Cellitemdisplay.propTypes = {
   handleClick: PropTypes.func.isRequired,
   marginh: PropTypes.number.isRequired,
   marginv: PropTypes.number.isRequired,
-  item: PropTypes.shape({
-    make: PropTypes.string.isRequired,
-    model: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-  }).isRequired,
+  make: PropTypes.string.isRequired,
+  model: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
   picture: PropTypes.shape({
     pictureid: PropTypes.string.isRequired,
   }).isRequired,
