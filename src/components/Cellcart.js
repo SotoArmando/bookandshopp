@@ -5,8 +5,8 @@
 // currently gives a succesfull code
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Rowitemcartdisplay from '../components/Rowitemcartdisplay';
-import Wrappedrowlist from '../components/Wrappedrowlist';
+import Rowitemcartdisplay from './Rowitemcartdisplay';
+import Wrappedrowlist from './Wrappedrowlist';
 
 function Cellcart({ handleClick, bookcart, shopcart }) {
   const [activetab, setActivetab] = useState(0);

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Wrappedrowlist from '../components/Wrappedrowlist';
+import Wrappedrowlist from './Wrappedrowlist';
 
 export default function Pagelifestyle({ children }) {
   const list = [0, 1, 2].map((e, i) => [

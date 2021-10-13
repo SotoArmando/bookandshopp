@@ -5,13 +5,13 @@ import Rowmenu from './containers/Rowmenu';
 import Pagehomepath from './containers/Pagehomepath';
 import { dbkeys, fetcher } from './fetch';
 import Pagesignsession from './containers/Pagesignsession';
-import Pageitempreview from './containers/Pageitempreview';
+import Pageitempreview from './components/Pageitempreview';
 // import './res/fonts/Inter/stylesheet.scss';
 // import './res/fonts/Opensans/stylesheet.scss';
 import sessionProvider from './res/sessionprovider';
-import Pagelifestyle from './containers/Pagelifestyle';
+import Pagelifestyle from './components/Pagelifestyle';
 import Pagecommitsession from './containers/Pagecommitsession';
-import Pagetestdrive from './containers/Pagetestdrive';
+import Pagetestdrive from './components/Pagetestdrive';
 import Pageappointments from './containers/Pageappointments';
 
 function App() {

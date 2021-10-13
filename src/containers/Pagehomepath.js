@@ -30,10 +30,10 @@ function Pagehomepath({
         history.push(`/preview/${id}`);
         break;
       case 'Add to Cart':
-        upstreamUser(activesessionid, { user_id: activesessionid, item_id: id }, 'user/CreateCartitem', handleSuccesfulCartAuthorization);
+        upstreamUser(activesessionid, { user_id: activesessionid, item_id: id }, 'user/CreateCartitem', handleSuccesfulCartAuthorization, () => 0);
         break;
       case 'Add to Booking':
-        upstreamUser(activesessionid, { user_id: activesessionid, item_id: id }, 'user/CreateBookeditem', handleSuccesfulBookAuthorization);
+        upstreamUser(activesessionid, { user_id: activesessionid, item_id: id }, 'user/CreateBookeditem', handleSuccesfulBookAuthorization, () => 0);
         break;
       default:
         break;

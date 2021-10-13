@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
-import Cellcart from './Cellcart';
+import Cellcart from '../components/Cellcart';
 import Colummenu from '../components/Columnmenu';
 
 function Rowmenu({

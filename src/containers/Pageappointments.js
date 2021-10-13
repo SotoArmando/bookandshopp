@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Rowitemappointment from '../components/Rowitemappointment';
+import Rowitemappointment from './Rowitemappointment';
 
 function Pageappointments({ appointment }) {
   return (
